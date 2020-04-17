@@ -3,6 +3,12 @@ var accountRouter = express.Router();
 
 var accountController = require('../controllers/accountController.js');
 
+
+/* home page. */
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'account' });
+});
+
 accountRouter.get('/log-in',function(req, res, next) {
     res.render('index', { title: 'log-in' });
   });
