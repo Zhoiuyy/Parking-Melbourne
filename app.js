@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/find-car-park', findCarParkRouter);
+app.use('/findCarPark', findCarParkRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -39,5 +39,12 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+// ignore when testing on heroku server
+app.listen(3000, () => {
+  console.log('The easiparking app is listening on port 3000!')
+});
+
 
 module.exports = app;
