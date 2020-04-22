@@ -1,14 +1,29 @@
-var mongoose = require('mongoose');
+require('dotenv').config()
 
-const uri = "mongodb+srv://Ying:<password>@cluster0-piwg5.mongodb.net/test?retryWrites=true&w=majority";
+const mongoose = require('mongoose');
 
-mongoose.connect(uri,
-    function(err){
-    if(!err){
-        console.log('Connected to mongo.');
-    }else{
-        console.log('Failed to connect to mongo!', err);
-    }
+// Connect to MongoDB
+CONNECTION_STRING = "mongodb+srv://Ying:<password>@cluster0-piwg5.mongodb.net/test?retryWrites=true&w=majority";
+MONGO_URL = CONNECTION_STRING.replace("<password>",process.env.MONGO_PASSWORD);
+
+console.log(MONGO_URL);
+
+mongoose.connect(MONGO_URL || "mongodb://localhost/info30005", {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  dbName: "accountDB"
 });
 
-require('./user.js');
+const db = mongoose.connection;
+db.on("error", err => {
+  console.error(err);
+  process.exit(1);
+});
+db.once("open", async () => {
+  console.log("Mongo connection started on " + db.host + ":" + db.port);
+});
+
+
+require('./account.js');

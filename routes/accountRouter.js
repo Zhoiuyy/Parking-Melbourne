@@ -5,33 +5,27 @@ var accountController = require('../controllers/accountController.js');
 
 
 /* home page */
-accountRouter.get('/', function(req, res, next) {
-  res.render('index', { title: 'account' });
-});
+
+accountRouter.get('/', accountController.getAllAccounts);
+
+accountRouter.get('/:id', accountController.getAccountById);
 
 accountRouter.get('/log-in',function(req, res, next) {
   res.render('index', { title: 'log-in' });
 });
 
-accountRouter.get('/sign-up',function(req, res, next) {
-  res.render('index', { title: 'sign-up' });
-});
+// handle the POST request to add an author
+accountRouter.post('/sign-up',accountController.createAccount);
 
-accountRouter.get('/contact',function(req, res, next) {
-  res.render('index', { title: 'contact' });
-});
+accountRouter.post('/update',accountController.updateAccounts);
+
+
 
 accountRouter.get('/history',function(req, res, next) {
   res.render('index', { title: 'history' });
 });
 
-accountRouter.get('/car-details',function(req, res, next) {
-  res.render('index', { title: 'car-details' });
-});
-  
-accountRouter.get('/payment-details',function(req, res, next) {
-  res.render('index', { title: 'payment-details' });
-});
+
 
 
 module.exports = accountRouter;
