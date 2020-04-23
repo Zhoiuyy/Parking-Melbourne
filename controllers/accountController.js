@@ -43,7 +43,7 @@ const createAccount = async (req, res) => {
 // function to get user by id
 const getAccountById = (req, res) => {
     try {
-        const account = Account.find(account => account.id === req.params.id);
+        const account = await Account.find({id:req.params.id});
         if (account){
             res.send(account); 
         } 
