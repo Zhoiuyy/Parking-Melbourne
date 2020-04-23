@@ -28,6 +28,7 @@ const createAccount = async (req, res) => {
           CreditCard:req.body.CreditCard,
       }
       
+      
       //var item = req.body;
       var data = new Account(item);
       data.save();
@@ -43,7 +44,7 @@ const createAccount = async (req, res) => {
 // function to get user by id
 const getAccountById = (req, res) => {
     try {
-        const account = await Account.find({id:req.params.id});
+        const account = Account.find(account => account.id === req.params.id);
         if (account){
             res.send(account); 
         } 
