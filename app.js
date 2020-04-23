@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+require('./models');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -41,9 +42,8 @@ app.use(function(err, req, res, next) {
 });
 
 
-// ignore when testing on heroku server
-app.listen(3000, () => {
-  console.log('The easiparking app is listening on port 3000!')
+app.listen(process.env.PORT || 3000, () => { 
+  console.log("The easiparking app is running!");
 });
 
 
