@@ -19,7 +19,7 @@ const getAllAccounts = async (req, res) => {
 // function to create User
 const createAccount = async (req, res) => {
     try {
-      /*
+      
       var item = {
           id:req.body.id,
           name:req.body.name,
@@ -27,8 +27,8 @@ const createAccount = async (req, res) => {
           licenseId:req.body.licenseId,
           CreditCard:req.body.CreditCard,
       }
-      */
-      var item = req.body;
+      
+      //var item = req.body;
       var data = new Account(item);
       data.save();
 
