@@ -1,14 +1,13 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const accountSchema = new Schema({
+const accountSchema = new mongoose.Schema({
     id:String,
-    name: {type: String, required: true},
+    name:String,
     gender: String,
     licenseId:String,
     CreditCard: String,
-}, {collection: 'account'});
+});
 
-const Account = mongoose.model("account", accountSchema);
+const Account = mongoose.model("account", accountSchema,"account");
 
 module.exports = Account;

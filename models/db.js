@@ -26,4 +26,4 @@ db.once("open", async () => {
 });
 
 
-require('./account.js');
+require('./account');
