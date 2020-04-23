@@ -19,17 +19,20 @@ const getAllAccounts = async (req, res) => {
 // function to create User
 const createAccount = async (req, res) => {
     try {
-        var item = {
-            id:req.body.id,
-            name:req.body.name,
-            gender:req.body.gender,
-            licenseId:req.body.licenseId,
-            CreditCard:req.body.CreditCard,
-        }
-        var data = new Account(item);
-        data.save();
+      /*
+      var item = {
+          id:req.body.id,
+          name:req.body.name,
+          gender:req.body.gender,
+          licenseId:req.body.licenseId,
+          CreditCard:req.body.CreditCard,
+      }
+      */
+      var item = req.body;
+      var data = new Account(item);
+      data.save();
 
-        res.redirect('/');
+      res.redirect('/');
       } catch (err) {
         res.status(400);
         return res.send("Database query failed");
