@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-// import author model
+// import account model
 const Account = mongoose.model("account");
 
     
@@ -15,6 +15,23 @@ const getAllAccounts = async (req, res) => {
   }
 };
     
+
+// function to get account by id
+const getAccountById = (req, res) => {
+    try {
+        const account = await Account.find({"id":"1"});
+        if (account){
+            res.send(account); 
+        } 
+        else{
+            res.send("User did not exist");
+        }
+        
+    } catch (err) {
+        res.status(400);
+        return res.send("Database query failed");
+    } 
+};
 
 // function to create User
 const createAccount = async (req, res) => {
@@ -41,22 +58,6 @@ const createAccount = async (req, res) => {
 };
 
 
-// function to get user by id
-const getAccountById = (req, res) => {
-    try {
-        const account = Account.find({"id":"1"});
-        if (account){
-            res.send(account); 
-        } 
-        else{
-            res.send("User did not exist");
-        }
-        
-    } catch (err) {
-        res.status(400);
-        return res.send("Database query failed");
-    } 
-};
 
 const updateAccounts = async (req, res) => {
   try {
