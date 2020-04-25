@@ -8,22 +8,38 @@ var accountController = require('../controllers/accountController.js');
 
 accountRouter.get('/', accountController.getAllAccounts);
 
-accountRouter.get('/:id', accountController.getAccountById);
-
 accountRouter.get('/log-in',function(req, res, next) {
   res.render('index', { title: 'log-in' });
 });
 
-// handle the POST request to add an author
+
+accountRouter.get('/sign-up', function(req, res, next) {
+  res.send("sign up Page");
+});
+
+// handle the POST request to create an account
+
 accountRouter.post('/sign-up',accountController.createAccount);
 
-accountRouter.post('/update',accountController.updateAccounts);
+accountRouter.get('/:id/update', function(req, res, next) {
+  res.send("update the accout, id ="+ req.params.id);
+});
 
+accountRouter.post('/:id/update',accountController.updateAccounts);
 
+accountRouter.get('/:id/delete', function(req, res, next) {
+  res.send("delete the accout,id = " + req.params.id);
+});
+
+accountRouter.post('/:id/delete',accountController.deleteAccounts);
 
 accountRouter.get('/history',function(req, res, next) {
-  res.render('index', { title: 'history' });
+  res.send("History Page");
 });
+
+accountRouter.get('/:id', accountController.getAccountById);
+
+accountRouter.get('/:id/payment-details',accountController.getPaymentDetailsById);
 
 
 
