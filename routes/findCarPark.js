@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {res.send('Welcome to find-car-park hom
 router.get('/get-curr-location', (req, res) => lController.getCurrLocation(req, res));
 
 // ask for the input of destination
-router.get('/go', (req, res) => pbController.askForDest(req, res));
+router.post('/go', (req, res) => lController.createDestination(req, res));
 
 // ask for the specific type of parking bay
 router.get('/filter', (req, res) => pbController.askForType(req, res));

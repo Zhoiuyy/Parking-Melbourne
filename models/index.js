@@ -18,3 +18,4 @@ console.log("Mongo connection started on " + db.host + ":" +
 db.port); });
 
 require("./location");
+require("./parking_bays")
