@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 // Connect to MongoDB
 CONNECTION_STRING = "mongodb+srv://Ying:<password>@cluster0-piwg5.mongodb.net/test?retryWrites=true&w=majority";
-MONGO_URL = CONNECTION_STRING.replace("<password>",process.env.MONGO_PASSWORD);
+MONGO_URL = CONNECTION_STRING.replace("<password>",process.env.MONGO_PASSWORD_YING);
 
 console.log(MONGO_URL);
 
