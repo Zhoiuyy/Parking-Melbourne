@@ -10,7 +10,7 @@ require('./models/Xiyan_db');
 
 var indexRouter = require('./routes/index');
 var accountRouter = require('./routes/accountRouter');
-
+var parkingRouter = require('./routes/parkingRouter');
 var findCarParkRouter = require('./routes/findCarPark');
 var app = express();
 
@@ -30,6 +30,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/account', accountRouter);
 app.use('/findCarPark', findCarParkRouter);
+app.use('/parking', parkingRouter);
+
 
 
 // catch 404 and forward to error handler
