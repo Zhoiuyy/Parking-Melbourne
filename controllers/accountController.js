@@ -53,7 +53,7 @@ const getPaymentDetailsById = async (req, res) => {
 // function to create User
 const createAccount = async (req, res) => {
     try {
-      /*
+      
       var item = ({
           id:req.body.id,
           name:req.body.name,
@@ -64,11 +64,9 @@ const createAccount = async (req, res) => {
           expiryDate: req.body.expiryDate,
           CVV:req.body.CVV
       });
-      */      
-      var item = req.body;
-      //var item = ({name:"Y",gender:"F",licenseId:"1002",CardHolderName:"Y",CardNumber:"123456789",expiryDate:"13/90",CVV:"123"});
+          
+     // var item = req.body;
       var data = new Account(item);
-      //var data = new Account({name:"Y",gender:"F",licenseId:"1002",CardHolderName:"Y",CardNumber:"123456789",expiryDate:"13/90",CVV:"123"});
       data.save();
 
       res.redirect('/');
@@ -80,10 +78,12 @@ const createAccount = async (req, res) => {
 
 const deleteAccounts = async (req, res) => {
   try {
-    
+      
       const id = req.params.id;
       Account.findByIdAndRemove(id).exec();
       res.send("The account was successfully deleted， id = " + id);
+      
+      
       res.redirect('/');
       
   } catch (err) {
@@ -96,19 +96,28 @@ const deleteAccounts = async (req, res) => {
 
 const updateAccounts = async (req, res) => {
   try {
+      
+      //var item = req.body;
+      //Account.findByIdAndUpdate(id,item);
       const id = req.params.id;
-      var item = req.body;
-      Account.findByIdAndUpdate(id,item);
-      /*
       Account.findById(id, function(err, doc) {
       if (err) {
         console.error('error, no account found');
       }
-      //doc.id = req.body.id,
-      doc = req.body;
+      doc.id = req.body.id,
+      doc.name = req.body.name,
+      doc.gender = req.body.gender,
+      doc.licenseId = req.body.licenseId,
+      doc.CardHolderName = req.body.CardHolderName,
+      doc.CardNumber = req.body.CardNumber,
+      doc.expiryDate =  req.body.expiryDate,
+      doc.CVV = req.body.CVV
+     
       doc.save();
       });
-      */
+      res.send("The account was successfully deleted， id = " + id);
+
+      
       res.redirect('/');
   } catch (err) {
       res.status(400);
