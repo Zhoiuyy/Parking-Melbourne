@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-require('./models');
+require('./models/Xiyan_db.js');
 
 var indexRouter = require('./routes/index');
 var findCarParkRouter = require('./routes/findCarPark');
