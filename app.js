@@ -6,8 +6,7 @@ var logger = require('morgan');
 const bodyParser = require("body-parser");
 
 require("./models/account");
-require("./models/Ying_db");
-require('./models/Xiyan_db.js');
+require('./models/Xiyan_db');
 
 var indexRouter = require('./routes/index');
 var accountRouter = require('./routes/accountRouter');
