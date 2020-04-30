@@ -1,6 +1,6 @@
-Homepage:\n
-URL: https://easiparking.herokuapp.com \n
-Explanation: Homepage \n
+Homepage:
+URL: https://easiparking.herokuapp.com 
+Explanation: Homepage
 Method: GET
 
 Account:
