@@ -56,6 +56,7 @@ const createAccount = async (req, res) => {
       
       var item = ({
           id:req.body.id,
+          password:req.body.password,
           name:req.body.name,
           gender:req.body.gender,
           licenseId:req.body.licenseId,
@@ -105,6 +106,7 @@ const updateAccounts = async (req, res) => {
         console.error('error, no account found');
       }
       doc.id = req.body.id,
+      doc.password = req.body.password,
       doc.name = req.body.name,
       doc.gender = req.body.gender,
       doc.licenseId = req.body.licenseId,
