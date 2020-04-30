@@ -12,7 +12,7 @@ const getCurrLocation = async (req, res) => {
   }
 };
 
-//
+// update the destination using post function
 const updateDestination = async (req, res) => {
   Location.findById("5eaa58f9364a020fd5599c55", function(err, doc){
     if(err){
