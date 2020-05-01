@@ -59,3 +59,32 @@ Explanation: To display the filter information for parking bays, it is only one 
 5. Method: GET 
 URL: https://easiparking.herokuapp.com/findCarPark/navigate 
 Explanation: To access the navigation, it only displays the current location and destination for now.
+
+Parking: 
+1. Method: GET  URL: https://easiparking.herokuapp.com/parking
+Explanation: To access the homepage of parking.
+
+2. Method: GET https://easiparking.herokuapp.com/parking/viewing_status
+Explanation: display all parking information. 
+
+3. Method: POST https://easiparking.herokuapp.com/parking/newparking
+Explanation: insert a new parking record, e.g. 
+{"id":"1000009","user_id":"Mearia","license_plate":"12389A","location":"Parkville","session":"1 hour","start_time":"12.00","end_time":"13.00","min_before":"5","status":"finished"}
+
+5. Method: GET https://easiparking.herokuapp.com/parking/done_newparking
+Explanation: inform user that new record is successfully created; only used in insomnia.rest
+
+6. Method: GET https://easiparking.herokuapp.com/parking/setting_notification/:id
+Explanation: display notification time for a specific parking record id, e.g. 
+https://easiparking.herokuapp.com/parking/setting_notification/5eabb35df45ee5aef30ad2d5
+
+7. Method: GET https://easiparking.herokuapp.com/parking/finding_car/:id
+Explanation: display parking location for a specific parking record id, e.g.
+https://easiparking.herokuapp.com/parking/finding_car/5eabb35df45ee5aef30ad2d5
+
+8. Method: GET https://easiparking.herokuapp.com/parking/paying
+Explanation: display a message that user has already paid for his session
+
+9. Method: GET https://easiparking.herokuapp.com/parking/:id
+Explanation: display parking record with a specific id, e.g. 
+https://easiparking.herokuapp.com/parking/1000010
