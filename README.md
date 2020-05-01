@@ -1,5 +1,5 @@
 Homepage:
-URL: https://easiparking.herokuapp.com 
+URL: https://easiparking.herokuapp.com
 Explanation: Homepage
 Method: GET
 
@@ -41,7 +41,7 @@ Method: https://easiparking.herokuapp.com/account/10001/payment-details
 7. URL: https://easiparking.herokuapp.com/account/:id/history
 Method: https://easiparking.herokuapp.com/account/10001/history
 
-Find car park:
+Find cae park:
 1. URL: https://easiparking.herokuapp.com/findCarPark 
 Explanation: To access the homepage of finding car park
 Method: GET
