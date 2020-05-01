@@ -1,5 +1,5 @@
 Homepage:
-URL: https://easiparking.herokuapp.com 
+URL: https://easiparking.herokuapp.com
 Explanation: Homepage
 Method: GET
 
