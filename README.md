@@ -10,8 +10,8 @@ Explanation: display all account information.
 
 2. Method: GET  URL: https://easiparking.herokuapp.com/account/:id
 Explanation: display a specific account information.
-e.g. GET https://easiparking.herokuapp.com/account/10001
-(show the information of account with id 10001 )
+e.g. GET https://easiparking.herokuapp.com/account/10003
+(show the information of account with id 10003 )
 
 3. Method: POST  URL: https://easiparking.herokuapp.com/account/sign-up
 Explanation: handle the POST request to create a new account
@@ -30,14 +30,14 @@ POST:{"id":"20002","password":"20002","name":"dd","gender":"d","licenseId":"ddd"
 5. Method: GET URL: https://easiparking.herokuapp.com/account/:id/delete
 Explanation: Delete a specific account by giving its _id
 e.g. GET https://easiparking.herokuapp.com/account/5eabac956a978400172dd972/delete
-(Delete the account with _id 5eaabe5f4769a60017e8d667)
+(Delete the account with _id 5eabac956a978400172dd972)
 
 6. Method: GET URL: https://easiparking.herokuapp.com/account/:id/payment-details
 Explanation: only show the payment detail for a specific account.
-e.g. GET https://easiparking.herokuapp.com/account/10001/payment-details
+e.g. GET https://easiparking.herokuapp.com/account/10003/payment-details
 
 7. Method: GET URL: https://easiparking.herokuapp.com/account/:id/history
-e.g. GET https://easiparking.herokuapp.com/account/10001/history
+e.g. GET https://easiparking.herokuapp.com/account/10003/history
 
 Find cae park:
 1. URL: https://easiparking.herokuapp.com/findCarPark 
