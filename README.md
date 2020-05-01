@@ -38,10 +38,11 @@ POST:{"id":"20002","password":"20002","name":"dd","gender":"d","licenseId":"ddd"
 
 7. Method: GET URL: https://easiparking.herokuapp.com/account/:id/delete
 Explanation: Delete a specific account by giving its _id
-e.g. GET https://easiparking.herokuapp.com/account/5eabac956a978400172dd972/delete
+e.g. 
+GET https://easiparking.herokuapp.com/account/5eabac956a978400172dd972/delete
 (Delete the account with _id 5eabac956a978400172dd972)
 
-Find cae park:
+Find car park:
 1. URL: https://easiparking.herokuapp.com/findCarPark 
 Explanation: To access the homepage of finding car park
 Method: GET
