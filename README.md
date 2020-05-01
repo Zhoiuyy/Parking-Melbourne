@@ -41,23 +41,23 @@ Method: https://easiparking.herokuapp.com/account/10001/payment-details
 7. URL: https://easiparking.herokuapp.com/account/:id/history
 Method: https://easiparking.herokuapp.com/account/10001/history
 
-Find cae park:
-1. URL: https://easiparking.herokuapp.com/findCarPark 
+Find car park:
+1. Method: GET 
+URL: https://easiparking.herokuapp.com/findCarPark 
 Explanation: To access the homepage of finding car park
-Method: GET
 
-2. URL: https://easiparking.herokuapp.com/findCarPark/get-curr-location
+2. Method: GET 
+URL: https://easiparking.herokuapp.com/findCarPark/get-curr-location
 Explanation: To get the current location of the user, however, at this stage, it is a fake data from the MongoDB database, without using the real GPS.
-Method: GET
 
-3. URL: https://easiparking.herokuapp.com/findCarPark/go 
-Explanation: Insert the destination in a json format  {type: “dest”, name: String, address: String, postcode: String}. (eg. {"type":"dest","name":"The Law Building","address":"185 Pelham St, Carlton","postcode":"3053"})
-Method: POST
+3. Method: POST 
+URL: https://easiparking.herokuapp.com/findCarPark/go 
+Explanation: Insert the destination in a json format  {type: “dest”, name: String, address: String, postcode: String}. (eg. {"type":"dest","name":"The Law Building","address":"185 Pelham St, Carlton","postcode":"3053"}) This can be verified using navigate.
 
-4. URL: https://easiparking.herokuapp.com/findCarPark/filter 
+4. Method: GET 
+URL: https://easiparking.herokuapp.com/findCarPark/filter 
 Explanation: To display the filter information for parking bays, it is only one line message at this stage.
-Method: GET
 
-5. URL: https://easiparking.herokuapp.com/findCarPark/navigate 
+5. Method: GET 
+URL: https://easiparking.herokuapp.com/findCarPark/navigate 
 Explanation: To access the navigation, it only displays the current location and destination for now.
-Method: GET 
