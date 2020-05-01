@@ -117,7 +117,7 @@ const updateAccounts = async (req, res) => {
      
       doc.save();
       });
-      res.send("The account was successfully deleted， id = " + id);
+      res.send("The account was successfully updated， id = " + id);
 
       
       res.redirect('/');

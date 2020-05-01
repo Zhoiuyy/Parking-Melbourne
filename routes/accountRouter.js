@@ -34,8 +34,8 @@ accountRouter.get('/:id/delete', function(req, res, next) {
 
 accountRouter.get('/:id/delete',accountController.deleteAccounts);
 
-accountRouter.get('/history',function(req, res, next) {
-  res.send("History Page");
+accountRouter.get('/:id/history',function(req, res, next) {
+  res.send("History Page for id = "+req.params.id);
 });
 
 accountRouter.get('/:id', accountController.getAccountById);
