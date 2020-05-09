@@ -64,7 +64,7 @@ const createAccount = async (req, res) => {
           CardHolderName:req.body.CardHolderName,
           CardNumber:req.body.CardNumber,
           expiryDate: req.body.expiryDate,
-          CVV:req.body.CVV
+          CVV:req.body.CVV,
       });
           
      // var item = req.body;
