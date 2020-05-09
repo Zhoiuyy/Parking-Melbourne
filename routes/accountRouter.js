@@ -26,11 +26,6 @@ accountRouter.get('/:id/update', function(req, res, next) {
 });
 
 accountRouter.post('/:id/update',accountController.updateAccounts);
-/*
-accountRouter.get('/:id/delete', function(req, res, next) {
-  res.send("delete the accout,id = " + req.params.id);
-});
-*/
 
 accountRouter.get('/:id/delete',accountController.deleteAccounts);
 

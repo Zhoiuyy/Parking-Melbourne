@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Crypt = require("./crypt");
 
 // import account model
 const Account = mongoose.model("account");
@@ -56,7 +57,7 @@ const createAccount = async (req, res) => {
       
       var item = ({
           id:req.body.id,
-          password:req.body.password,
+          password:Crypt.encrypt(req.body.password),
           name:req.body.name,
           gender:req.body.gender,
           licenseId:req.body.licenseId,
