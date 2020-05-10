@@ -83,31 +83,32 @@ const accountLogIn = async (req, res) => {
 
 // function to create User
 const createAccount = async (req, res) => {
-    try {
-      
-      var item = ({
-          id:req.body.id,
-          username:req.body.username,
-          password:Crypt.encrypt(req.body.password),
-          name:req.body.name,
-          gender:req.body.gender,
-          licenseId:req.body.licenseId,
-          CardHolderName:req.body.CardHolderName,
-          CardNumber:req.body.CardNumber,
-          expiryDate: req.body.expiryDate,
-          CVV:req.body.CVV,
-      });
-          
-     // var item = req.body;
-      var data = new Account(item);
-      data.save();
+  try {
+    var item = ({
+        id:req.body.id,
+        username:req.body.username,
+        password:req.body.password,
+        name:req.body.name,
+        gender:req.body.gender,
+        licenseId:req.body.licenseId,
+        CardHolderName:req.body.CardHolderName,
+        CardNumber:req.body.CardNumber,
+        expiryDate: req.body.expiryDate,
+        CVV:req.body.CVV
+    });
+        
+   // var item = req.body;
+    var data = new Account(item);
+    data.save();
 
-      res.redirect('/');
-      } catch (err) {
-        res.status(400);
-        return res.send("Database query failed");
-      }
-};
+    res.redirect('/');
+    } catch (err) {
+      res.status(400);
+      return res.send("Database query failed");
+    }
+}
+
+
 
 const deleteAccounts = async (req, res) => {
   try {

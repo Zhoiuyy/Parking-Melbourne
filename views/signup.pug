@@ -1,0 +1,39 @@
+extends default
+
+block content
+
+    div.main
+        div 
+            h3 Sign-up Form
+            form(method='POST' action='/account/sign-up')
+                div
+                    label(for='id') ID:
+                    input(type='text', placeholder='id' name='id' id='id' value='')
+                div
+                    label(for='password') Password:
+                    input(type='text', placeholder='password' name='password' id='password' value='')
+                div
+                    label(for='name') Name:
+                    input(type='text', placeholder='name' name='name' id='name' value='')
+                div
+                    label(for='gender') Gender:
+                    input(type='text', placeholder='gender' name='gender' id='gender' value='')
+                div
+                    label(for='licenseId') Driver's License Id:
+                    input(type='text', placeholder='licenseId' name='licenseId' id='licenseId' value='')
+                div
+                    label(for='CardHolderName') CardHolderName:
+                    input(type='text', placeholder='CardHolderName' name='CardHolderName' id='CardHolderName' value='')
+                div
+                    label(for='CardNumber') CardNumber:
+                    input(type='text', placeholder='CardNumber' name='CardNumber' id='CardNumber' value='')
+                div
+                    label(for='expiryDate') expiryDate:
+                    input(type='text', placeholder='expiryDate' name='expiryDate' id='expiryDate' value='')
+                div
+                    label(for='CVV') CVV:
+                    input(type='text', placeholder='CVV' name='CVV' id='CVV' value='')
+
+                button(type='submit') Sign up
+        
+        
