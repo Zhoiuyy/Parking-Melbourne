@@ -48,22 +48,7 @@ const createStatus = async (req, res) => {
     }
 }; 
 
-// display a parking record with a specific ID
-const getStatusById = async (req, res) => {
-    try {
-        const status = await Viewing_status.find({"id":req.params.id});
-        if (status) {
-            res.send(status);
-        } else {
-            res.send("parking does not exist"); 
-        }
-    } catch (err) {
-        res.status(400);
-        return res.send("Database query failed"); 
-    }
-}; 
 
-//////////////////////////////////////////
 
 module.exports = {
     getAllStatus, 
