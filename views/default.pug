@@ -1,0 +1,53 @@
+doctype html
+html
+    head
+        link(rel='stylesheet', href='/stylesheets/style.css', media='all')
+        link(rel='stylesheet', href='/stylesheets/font-awesome.css')
+        link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        meta(charset='UTF-8')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge')
+        
+    body
+        header#home.py-sm-3.pt-3.pb-2
+            <div class="container">
+                div.top.d-md-flex
+                    #logo
+                        a(href='/')
+                            |   Easiparking
+                div.text-right
+                    a.btn(href='/account/log-in') 
+                        span.fa.fa-user-circle-o
+                        |   Log in
+                    a.btn(href='/account/sign-up')
+                        span.fa.fa-pencil-square-o
+                        |   Sign up
+            nav.text-center
+                label.toggle(for='drop')
+                    span.fa.fa-bars
+                input#drop(type='checkbox')
+                ul.menu
+                    li
+                    a(href='/findCarPark') Coming soon
+                    li
+                    a(href='/parking') Coming soon
+                    li
+                    a(href='/contact') Contact us
+                    li
+                    a(href='/feedback') Feedback
+            </div>        
+
+        block content
+
+        footer.footer-content.py-5
+            div.container-fluid.inner-sec-w3ls
+                div.row
+                    div.col-lg-6.copy-w3pvt
+                        p.copy-right-grids.text-li.text-left.my-sm-4.my-4
+                            | &copy; 2020 Easiparking. All Rights Reserved | Design by
+                            a(href='/contact')  The Fast and the Furious
+
+
+
+
+
