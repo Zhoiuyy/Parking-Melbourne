@@ -14,12 +14,14 @@ accountRouter.get('/log-in',function(req, res, next) {
 
 
 accountRouter.get('/sign-up', function(req, res, next) {
-  res.send("sign up Page");
+  res.render('signup', {
+    title: 'sign-up'
+  });
 });
 
 // handle the POST request to create an account
 
-accountRouter.post('/sign-up',accountController.createAccount);
+accountRouter.post('/sign-up', accountController.createAccount);
 
 accountRouter.get('/:id/update', function(req, res, next) {
   res.send("update the accout, id ="+ req.params.id);
