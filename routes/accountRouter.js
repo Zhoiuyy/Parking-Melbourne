@@ -10,8 +10,10 @@ var parkingController = require('../controllers/parkingController.js');
 accountRouter.get('/', accountController.getAllAccounts);
 
 accountRouter.get('/log-in',function(req, res, next) {
-  res.render('index', { title: 'log-in' });
+  res.render('logIn');
 });
+
+accountRouter.post('/log-in',accountController.accountLogIn);
 
 
 accountRouter.get('/sign-up', function(req, res, next) {
@@ -24,18 +26,14 @@ accountRouter.get('/sign-up', function(req, res, next) {
 
 accountRouter.post('/sign-up', accountController.createAccount);
 
+
 accountRouter.get('/:id/update', function(req, res, next) {
   res.send("update the accout, id ="+ req.params.id);
 });
 
 accountRouter.post('/:id/update',accountController.updateAccounts);
-/*
-accountRouter.get('/:id/delete', function(req, res, next) {
-  res.send("delete the accout,id = " + req.params.id);
-});
-*/
 
-accountRouter.get('/:id/delete',accountController.deleteAccounts);
+//accountRouter.get('/:id/delete',accountController.deleteAccounts);
 
 accountRouter.get('/:id/history', parkingController.getStatusById);
 

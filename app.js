@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const bodyParser = require("body-parser");
 
+
 require("./models/account");
 require('./models/Xiyan_db');
 
@@ -12,6 +13,8 @@ var indexRouter = require('./routes/index');
 var accountRouter = require('./routes/accountRouter');
 var parkingRouter = require('./routes/parkingRouter');
 var findCarParkRouter = require('./routes/findCarPark');
+var contactRouter = require('./routes/contactRouter');
+var feedbackRouter = require('./routes/feedbackRouter');
 var app = express();
 
 
@@ -31,7 +34,8 @@ app.use('/', indexRouter);
 app.use('/account', accountRouter);
 app.use('/findCarPark', findCarParkRouter);
 app.use('/parking', parkingRouter);
-
+app.use('/contact',contactRouter);
+app.use('/feedback',feedbackRouter);
 
 
 // catch 404 and forward to error handler

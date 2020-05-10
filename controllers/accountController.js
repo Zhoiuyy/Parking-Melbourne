@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Crypt = require("./crypt");
 
 // import account model
 const Account = mongoose.model("account");
@@ -49,12 +50,43 @@ const getPaymentDetailsById = async (req, res) => {
   } 
 };
 
+const accountLogIn = async (req, res) => {
+  const Username = req.body.username;
+  const userPassword = req.body.password;
+  try {
+    const account = await Account.findOne({"username":Username});
+    if (!account) {
+      res.status(400);
+      console.log("account not found");
+      return res.render('sendMessage', {
+        message: 'Account not found'
+      });
+    }
+
+    const checkPassword = Crypt.decrypt(userPassword, account.password);
+    if(!checkPassword){
+      console.log("password incorrect");
+      return res.render('sendMessage', {
+        message: 'Password incorrect'
+      });
+    }
+    
+    res.render('sendMessage', {
+      message: 'login successful'
+    });
+    
+  } catch (err) {
+    res.status(400);
+    return res.send("Database query failed");
+  }
+};
 
 // function to create User
 const createAccount = async (req, res) => {
   try {
     var item = ({
         id:req.body.id,
+        username:req.body.username,
         password:req.body.password,
         name:req.body.name,
         gender:req.body.gender,
@@ -75,6 +107,7 @@ const createAccount = async (req, res) => {
       return res.send("Database query failed");
     }
 }
+
 
 
 const deleteAccounts = async (req, res) => {
@@ -136,5 +169,6 @@ module.exports = {
     getAccountById,
     updateAccounts,
     getPaymentDetailsById,
-    deleteAccounts
+    deleteAccounts,
+    accountLogIn,
 };
