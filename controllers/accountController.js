@@ -54,7 +54,7 @@ const accountLogIn = async (req, res) => {
   const Username = req.body.username;
   const userPassword = req.body.password;
   try {
-    const account = await Account.findOne({"user":Username});
+    const account = await Account.findOne({"username":Username});
     if (!account) {
       res.status(400);
       console.log("account not found");
