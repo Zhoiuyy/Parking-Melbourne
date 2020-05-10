@@ -18,11 +18,15 @@ const getAllStatus = async (req, res) => {
 // display a parking record with a specific ID
 const getStatusById = async (req, res) => {
     try {
-        const status = await Viewing_status.find({"id":req.params.id});
-        if (status) {
-            res.send(status);
+        const status_list = await Viewing_status.find({"id":req.params.id});
+        if (!status_list) {
+            console.log('account not found');
+            return res.send('account not found');
         } else {
-            res.send("parking does not exist"); 
+            res.render('parkingHistory', {
+                title: 'parkingHistory',
+                status_list: status_list,
+              });
         }
     } catch (err) {
         res.status(400);

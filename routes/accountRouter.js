@@ -2,6 +2,7 @@ var express = require('express');
 var accountRouter = express.Router();
 
 var accountController = require('../controllers/accountController.js');
+var parkingController = require('../controllers/parkingController.js');
 
 
 /* home page */
@@ -36,9 +37,7 @@ accountRouter.get('/:id/delete', function(req, res, next) {
 
 accountRouter.get('/:id/delete',accountController.deleteAccounts);
 
-accountRouter.get('/:id/history',function(req, res, next) {
-  res.send("History Page for id = "+req.params.id);
-});
+accountRouter.get('/:id/history', parkingController.getStatusById);
 
 accountRouter.get('/:id', accountController.getAccountById);
 

@@ -1,0 +1,23 @@
+extends default
+
+block content
+
+    div.main
+        
+        table
+            tr
+                th Location
+                th Session
+                th start_time
+                th end_time
+                th status
+            
+            each status in status_list
+                tr
+                    td 
+                        a(href= status.id + 'history') #{status.id}
+                    td #{status.location}
+                    td #{status.session}
+                    td #{status.start_time}
+                    td #{status.end_time}
+                    td #{status.status}
