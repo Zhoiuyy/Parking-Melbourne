@@ -10,7 +10,9 @@ var parkingController = require('../controllers/parkingController.js');
 accountRouter.get('/', accountController.getAllAccounts);
 
 accountRouter.get('/log-in',function(req, res, next) {
-  res.render('logIn');
+  res.render('logIn', {
+    cookie: req.signedCookies.account
+  });
 });
 
 accountRouter.post('/log-in',accountController.accountLogIn);
@@ -18,8 +20,17 @@ accountRouter.post('/log-in',accountController.accountLogIn);
 
 accountRouter.get('/sign-up', function(req, res, next) {
   res.render('signup', {
-    title: 'sign-up'
+    cookie: req.signedCookies.account
   });
+});
+
+accountRouter.get('/log-out', function(req, res, next) {
+  res.clearCookie('account')
+  res.redirect('/')
+});
+
+accountRouter.post('/log-out', function(req, res, next) {
+  res.clearCookie('account')
 });
 
 // handle the POST request to create an account
