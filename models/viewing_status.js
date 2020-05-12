@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 // create database schemas
 const viewing_statusSchema = new mongoose.Schema({
-    id: String, 
+    username: String, 
     user_id: String, 
     license_plate: String,
     location: String, 
