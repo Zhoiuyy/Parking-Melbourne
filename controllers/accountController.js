@@ -97,9 +97,10 @@ const createAccount = async (req, res) => {
     if (account) {
       res.status(400);
       console.log("This username has been taken");
-      return res.render('sendMessage', {
-        message: 'This username has been taken'
+      res.render('signup', {
+        a:'This username has been taken111',
       });
+      res.redirect('account/sign-up');
     }
     else{
       var item = ({
@@ -172,7 +173,6 @@ const updateAccounts = async (req, res) => {
       doc.save();
       });
       res.render('update', {
-        id: id, 
         title: 'update',
       }); 
 
