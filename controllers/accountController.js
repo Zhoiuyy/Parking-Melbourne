@@ -20,9 +20,9 @@ const getAllAccounts = async (req, res) => {
 // function to get account by id
 const getAccountByUsername = async (req, res) => {
     try {
+        console.log(req.params.username); 
         const account = await Account.findOne({"username":req.params.username});
         if (!account) {
-          console.log('account not found'); 
           return res.send('account not found'); 
         } else {
           res.render('viewaccount', {
