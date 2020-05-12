@@ -21,13 +21,15 @@ const getAllAccounts = async (req, res) => {
 const getAccountByUsername = async (req, res) => {
     try {
         const account = await Account.find({"username":req.params.username});
-        if (account){
-            res.send(account); 
-        } 
-        else{
-            res.send("User did not exist");
+        if (!account) {
+          console.log('account not found'); 
+          return res.send('account not found'); 
+        } else {
+          res.render('viewaccount', {
+            title: 'viewaccount', 
+            account: account,
+          }); 
         }
-        
     } catch (err) {
         res.status(400);
         return res.send("Database query failed");
@@ -158,7 +160,6 @@ const updateAccounts = async (req, res) => {
       if (err) {
         console.error('error, no account found');
       }
-
       doc.password = Crypt.encrypt(req.body.password),
       doc.name = req.body.name,
       doc.gender = req.body.gender,
@@ -170,9 +171,11 @@ const updateAccounts = async (req, res) => {
      
       doc.save();
       });
-      res.send("The account was successfully updated， username = " + username);
+      res.render('update', {
+        id: id, 
+        title: 'update',
+      }); 
 
-      
       res.redirect('/');
   } catch (err) {
       res.status(400);
