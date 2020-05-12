@@ -3,21 +3,31 @@ extends default
 block content
 
     div.main
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">session</th>
+                    <th scope="col">start_time</th>
+                    <th scope="col">finsih_time</th>
+                    <th scope="col">status</th>
+                </tr>
+            </thead>
         
-        table
-            tr
-                th Location
-                th Session
-                th start_time
-                th end_time
-                th status
-            
-            each status in status_list
-                tr
-                    td 
-                        a(href= status.id + 'history') #{status.id}
-                    td #{status.location}
-                    td #{status.session}
-                    td #{status.start_time}
-                    td #{status.end_time}
-                    td #{status.status}
+            <tbody>
+                each status in status_list
+                    <tr>
+                        <td> 
+                            a(href= status.username + 'history') #{status.username}</td>
+                        <td> #{status.location}</td>
+                        <td> #{status.session}</td>
+                        <td> #{status.start_time}</td>
+                        <td> #{status.end_time}</td>
+                        <td> #{status.status}</td>
+                    </tr>
+            </tbody>
+        </table>
+            p.text-center.mt-4
+                    a(href='/feedback') Have question on any parking session? Query Here
+                    br

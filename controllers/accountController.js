@@ -18,7 +18,7 @@ const getAllAccounts = async (req, res) => {
     
 
 // function to get account by id
-const getAccountById = async (req, res) => {
+const getAccountByUsername = async (req, res) => {
     try {
         const account = await Account.find({"username":req.params.username});
         if (!account) {
@@ -61,7 +61,8 @@ const accountLogIn = async (req, res) => {
       res.status(400);
       console.log("account not found");
       return res.render('sendMessage', {
-        message: 'Account not found'
+        message: 'Account not found',
+        cookie: req.signedCookies.account
       });
     }
 
@@ -69,13 +70,18 @@ const accountLogIn = async (req, res) => {
     if(!checkPassword){
       console.log("password incorrect");
       return res.render('sendMessage', {
-        message: 'Password incorrect'
+        message: 'Password incorrect',
+        cookie: req.signedCookies.account
       });
     }
-    
+    res.cookie("account",Username, {maxAge: 60000000 , signed:true});
+    res.redirect('/');
+    /*
     res.render('sendMessage', {
-      message: 'login successful'
+      message: 'login successful',
+      cookie: req.signedCookies.account
     });
+    */
     
   } catch (err) {
     res.status(400);
@@ -85,9 +91,18 @@ const accountLogIn = async (req, res) => {
 
 // function to create User
 const createAccount = async (req, res) => {
+  
   try {
-    var item = ({
-        id:req.body.id,
+    const account = await Account.findOne({"username":req.body.username,});
+    if (account) {
+      res.status(400);
+      console.log("This username has been taken");
+      return res.render('sendMessage', {
+        message: 'This username has been taken'
+      });
+    }
+    else{
+      var item = ({
         username:req.body.username,
         password:Crypt.encrypt(req.body.password),
         name:req.body.name,
@@ -103,10 +118,15 @@ const createAccount = async (req, res) => {
     var data = new Account(item);
     data.save();
 
-    res.redirect('/');
-    } catch (err) {
+    res.render('sendMessage', {
+      message: 'You have successfully signed up the account.'
+    });} 
+    }
+    catch (err) {
       res.status(400);
-      return res.send("Database query failed");
+      res.render('sendMessage', {
+        message: 'You have failed signing up.'
+      });
     }
 }
 
@@ -115,9 +135,9 @@ const createAccount = async (req, res) => {
 const deleteAccounts = async (req, res) => {
   try {
       
-      const id = req.params.id;
-      Account.findByIdAndRemove(id).exec();
-      res.send("The account was successfully deleted， id = " + id);
+      const username = req.params.username;
+      Account.findByIdAndRemove(username).exec();
+      res.send("The account was successfully deleted， username = " + username);
       
       
       res.redirect('/');
@@ -135,13 +155,11 @@ const updateAccounts = async (req, res) => {
       
       //var item = req.body;
       //Account.findByIdAndUpdate(id,item);
-      const id = req.params.id;
-      Account.findById(id, function(err, doc) {
+      const username = req.params.username;
+      Account.findByUsername(username, function(err, doc) {
       if (err) {
         console.error('error, no account found');
       }
-      
-      doc.id = req.body.id,
       doc.password = Crypt.encrypt(req.body.password),
       doc.name = req.body.name,
       doc.gender = req.body.gender,
@@ -157,6 +175,7 @@ const updateAccounts = async (req, res) => {
         id: id, 
         title: 'update',
       }); 
+
       res.redirect('/');
   } catch (err) {
       res.status(400);
@@ -170,7 +189,7 @@ const updateAccounts = async (req, res) => {
 module.exports = {
     getAllAccounts,
     createAccount,
-    getAccountById,
+    getAccountByUsername,
     updateAccounts,
     getPaymentDetailsById,
     deleteAccounts,

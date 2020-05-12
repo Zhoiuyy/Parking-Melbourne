@@ -14,9 +14,9 @@ const getAllStatus = async (req, res) => {
 }; 
 
 // display a parking record with a specific ID
-const getStatusById = async (req, res) => {
+const getStatusByUsername = async (req, res) => {
     try {
-        const status_list = await Viewing_status.find({"id":req.params.id});
+        const status_list = await Viewing_status.find({"username":req.params.username});
         if (!status_list) {
             console.log('account not found');
             return res.send('account not found');
@@ -52,6 +52,6 @@ const createStatus = async (req, res) => {
 
 module.exports = {
     getAllStatus, 
-    getStatusById, 
+    getStatusByUsername, 
     createStatus
 }; 

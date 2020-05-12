@@ -49,6 +49,6 @@ parkingRouter.get('/paying', (req, res) => {
 }); 
 
 // display a parking record with a specific ID
-parkingRouter.get('/:id', parkingController.getStatusById); 
+parkingRouter.get('/:username', parkingController.getStatusByUsername); 
 
 module.exports = parkingRouter; 
