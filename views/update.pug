@@ -5,10 +5,7 @@ block content
     div.main
         div 
             h3 Update My Information
-            form(method="POST" action='/account/id/update')
-                div
-                    label(for='id') ID:
-                    input(type='text', placeholder='id' name='id' id='id' value=id)
+            form(method="POST" action='update')
                 div
                     label(for='password') Password:
                     input(type='text', placeholder='password' name='password' id='password' value=password)

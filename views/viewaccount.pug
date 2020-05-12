@@ -3,19 +3,19 @@ extends default
 block content
     div.container.py-md-5
     h3.title-w3pvt.text-center My account
-        div.login.px-sm-4.mx-auto.mw-100.login-wrapper
+        div.main
             table
                 tr
-                    th username
+                    td username
                     td #{account.username}      
                 tr 
-                    th Name
+                    td Name
                     td #{account.name}
                 tr  
-                    th Gender
+                    td Gender
                     td #{account.gender}
                 tr
-                    th License 
+                    td License 
                     td #{account.licenseId}
         div.text-center
             a.btn(href='/parking/history') 
@@ -24,7 +24,7 @@ block content
             a.btn(href='/account/'+account.username+'/update') 
                 span.fa.fa-refresh
                 |   Update
-                
+
                 
                     
                         

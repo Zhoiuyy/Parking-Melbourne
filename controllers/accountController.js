@@ -20,7 +20,7 @@ const getAllAccounts = async (req, res) => {
 // function to get account by id
 const getAccountByUsername = async (req, res) => {
     try {
-        const account = await Account.find({"username":req.params.username});
+        const account = await Account.findOne({"username":req.params.username});
         if (!account) {
           console.log('account not found'); 
           return res.send('account not found'); 
@@ -156,7 +156,8 @@ const updateAccounts = async (req, res) => {
       //var item = req.body;
       //Account.findByIdAndUpdate(id,item);
       const username = req.params.username;
-      Account.findByUsername(username, function(err, doc) {
+      const account = await Account.findOne({"username":req.params.username});
+      Account.findById(account._id, function(err, doc) {
       if (err) {
         console.error('error, no account found');
       }
@@ -172,10 +173,8 @@ const updateAccounts = async (req, res) => {
       doc.save();
       });
       res.render('update', {
-        id: id, 
         title: 'update',
       }); 
-
       res.redirect('/');
   } catch (err) {
       res.status(400);

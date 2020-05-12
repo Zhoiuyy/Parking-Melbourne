@@ -38,21 +38,21 @@ accountRouter.post('/log-out', function(req, res, next) {
 accountRouter.post('/sign-up', accountController.createAccount);
 
 
-accountRouter.get('/:id/update', function(req, res, next) {
+accountRouter.get('/:username/update', function(req, res, next) {
   res.render('update', {
     title: 'update'
   }); 
 });
 
-accountRouter.post('/:id/update',accountController.updateAccounts);
+accountRouter.post('/:username/update',accountController.updateAccounts);
 
 //accountRouter.get('/:id/delete',accountController.deleteAccounts);
 
 accountRouter.get('/:username/history', parkingController.getStatusByUsername);
 
-accountRouter.get('/:id', accountController.getAccountByUsername);
+accountRouter.get('/:username', accountController.getAccountByUsername);
 
-accountRouter.get('/:id/payment-details',accountController.getPaymentDetailsById);
+accountRouter.get('/:username/payment-details',accountController.getPaymentDetailsById);
 
 
 
