@@ -20,14 +20,16 @@ const getAllAccounts = async (req, res) => {
 // function to get account by id
 const getAccountById = async (req, res) => {
     try {
-        const account = await Account.find({"id":req.params.id});
-        if (account){
-            res.send(account); 
-        } 
-        else{
-            res.send("User did not exist");
+        const account = await Account.find({"username":req.params.username});
+        if (!account) {
+          console.log('account not found'); 
+          return res.send('account not found'); 
+        } else {
+          res.render('viewaccount', {
+            title: 'viewaccount', 
+            account: account,
+          }); 
         }
-        
     } catch (err) {
         res.status(400);
         return res.send("Database query failed");
@@ -87,7 +89,7 @@ const createAccount = async (req, res) => {
     var item = ({
         id:req.body.id,
         username:req.body.username,
-        password:req.body.password,
+        password:Crypt.encrypt(req.body.password),
         name:req.body.name,
         gender:req.body.gender,
         licenseId:req.body.licenseId,
@@ -138,8 +140,9 @@ const updateAccounts = async (req, res) => {
       if (err) {
         console.error('error, no account found');
       }
+      
       doc.id = req.body.id,
-      doc.password = req.body.password,
+      doc.password = Crypt.encrypt(req.body.password),
       doc.name = req.body.name,
       doc.gender = req.body.gender,
       doc.licenseId = req.body.licenseId,
@@ -150,9 +153,10 @@ const updateAccounts = async (req, res) => {
      
       doc.save();
       });
-      res.send("The account was successfully updated， id = " + id);
-
-      
+      res.render('update', {
+        id: id, 
+        title: 'update',
+      }); 
       res.redirect('/');
   } catch (err) {
       res.status(400);

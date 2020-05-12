@@ -28,7 +28,9 @@ accountRouter.post('/sign-up', accountController.createAccount);
 
 
 accountRouter.get('/:id/update', function(req, res, next) {
-  res.send("update the accout, id ="+ req.params.id);
+  res.render('update', {
+    title: 'update'
+  }); 
 });
 
 accountRouter.post('/:id/update',accountController.updateAccounts);
