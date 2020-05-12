@@ -15,22 +15,30 @@ html
                     #logo
                         a(href='/')
                             |   Easiparking
-                div.text-right
-                    a.btn(href='/account/log-in') 
-                        span.fa.fa-user-circle-o
-                        |   Log in
-                    a.btn(href='/account/sign-up')
-                        span.fa.fa-pencil-square-o
-                        |   Sign up
+                //div #{cookie}
+                if cookie
+                    div.text-right
+                        a.btn(href='/account') 
+                            span.fa.fa-user-circle-o
+                            |   #{cookie}
+                else       
+                    div.text-right
+                        a.btn(href='/account/log-in') 
+                            span.fa.fa-user-circle-o
+                            |   Log in
+                        a.btn(href='/account/sign-up')
+                            span.fa.fa-pencil-square-o
+                            |   Sign up
+
             nav.text-center
                 label.toggle(for='drop')
                     span.fa.fa-bars
                 input#drop(type='checkbox')
                 ul.menu
                     li
-                    a(href='/findCarPark') Coming soon
+                    a(href='/findCarPark') FindCarPark(Coming soon)
                     li
-                    a(href='/parking') Coming soon
+                    a(href='/parking') parking(Coming soon)
                     li
                     a(href='/contact') Contact us
                     li

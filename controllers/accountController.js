@@ -59,7 +59,8 @@ const accountLogIn = async (req, res) => {
       res.status(400);
       console.log("account not found");
       return res.render('sendMessage', {
-        message: 'Account not found'
+        message: 'Account not found',
+        cookie: req.signedCookies.account
       });
     }
 
@@ -67,13 +68,18 @@ const accountLogIn = async (req, res) => {
     if(!checkPassword){
       console.log("password incorrect");
       return res.render('sendMessage', {
-        message: 'Password incorrect'
+        message: 'Password incorrect',
+        cookie: req.signedCookies.account
       });
     }
-    
+    res.cookie("account",Username, {maxAge: 60000000 , signed:true});
+    res.redirect('/');
+    /*
     res.render('sendMessage', {
-      message: 'login successful'
+      message: 'login successful',
+      cookie: req.signedCookies.account
     });
+    */
     
   } catch (err) {
     res.status(400);
@@ -87,7 +93,7 @@ const createAccount = async (req, res) => {
     var item = ({
         id:req.body.id,
         username:req.body.username,
-        password:req.body.password,
+        password:Crypt.encrypt(req.body.password),
         name:req.body.name,
         gender:req.body.gender,
         licenseId:req.body.licenseId,
@@ -139,7 +145,7 @@ const updateAccounts = async (req, res) => {
         console.error('error, no account found');
       }
       doc.id = req.body.id,
-      doc.password = req.body.password,
+      doc.password = Crypt.encrypt(req.body.password),
       doc.name = req.body.name,
       doc.gender = req.body.gender,
       doc.licenseId = req.body.licenseId,

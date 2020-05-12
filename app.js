@@ -5,8 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const bodyParser = require("body-parser");
 
-
-require("./models/account");
+require('./models/feedback');
+require('./models/account');
 require('./models/Xiyan_db');
 
 var indexRouter = require('./routes/index');
@@ -27,8 +27,20 @@ app.use(express.json());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser('secretadd'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+let whitelist = ['/account/log-in','/account/log-in/','/','/account/sign-up','/contact','/feedback'];
+
+app.use(function(req, res, next) {
+  var url = req.url;
+  if (!(whitelist.includes(url)) && !req.signedCookies.account) {
+      res.redirect('/account/log-in')  
+      return
+  }
+  next();
+});
+
 
 app.use('/', indexRouter);
 app.use('/account', accountRouter);
