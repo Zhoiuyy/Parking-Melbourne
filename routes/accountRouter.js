@@ -35,9 +35,9 @@ accountRouter.post('/:id/update',accountController.updateAccounts);
 
 //accountRouter.get('/:id/delete',accountController.deleteAccounts);
 
-accountRouter.get('/:id/history', parkingController.getStatusById);
+accountRouter.get('/history/username', parkingController.getStatusByUsername);
 
-accountRouter.get('/:id', accountController.getAccountById);
+accountRouter.get('/:id', accountController.getAccountByUsername);
 
 accountRouter.get('/:id/payment-details',accountController.getPaymentDetailsById);
 
