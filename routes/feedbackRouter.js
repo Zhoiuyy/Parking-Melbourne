@@ -19,6 +19,7 @@ feedbackRouter.post('/', function(req, res, next) {
     data.save();
     res.render('sendMessage', {
         message: 'Thank you for your feedback. We\'ll endeavour to process your feedback as quickly as possible.',
+        cookie: req.signedCookies.account
     });
 });
 
