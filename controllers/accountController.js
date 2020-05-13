@@ -96,11 +96,11 @@ const createAccount = async (req, res) => {
     const account = await Account.findOne({"username":req.body.username,});
     if (account) {
       res.status(400);
-      console.log("This username has been taken");
+      console.log("This username has already been used by others");
       res.render('signup', {
-        a:'This username has been taken111',
+        message:'This username has already been used by others',
       });
-      res.redirect('account/sign-up');
+      
     }
     else{
       var item = ({

@@ -8,7 +8,8 @@ block content
             form.login-wrapper.w3pvt_mail_grid_right(method='POST' action='/account/sign-up')
                 div.form-group
                     label.mb-2(for='username') Username:
-                    div #{a}
+                    // prevent same username by displaying the message
+                    div <p><a href="#" class="text-danger">#{message}</a></p>
                     input.form-control(type='text', placeholder='username' name='username' value=username)
                 div.form-group
                     label.mb-2(for='password') Password:
