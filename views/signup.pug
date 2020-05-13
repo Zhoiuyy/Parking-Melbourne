@@ -9,34 +9,34 @@ block content
                 div.form-group
                     label.mb-2(for='username') Username:
                     // prevent same username by displaying the message
-                    div <p><a href="#" class="text-danger">#{message}</a></p>
-                    input.form-control(type='text', placeholder='username' name='username' value=username)
+                    div.text-danger #{message}
+                    input.form-control(type='text', placeholder='username*' name='username' value=username required="")
                 div.form-group
                     label.mb-2(for='password') Password:
-                    input.form-control(type='text', placeholder='password' name='password' value=username)
+                    input.form-control(type='text', placeholder='password*' name='password' value=password required="")
                 div.form-group
                     label.mb-2(for='name') Full Name:
-                    input.form-control(type='text', placeholder='name' name='name' value=name)
+                    input.form-control(type='text', placeholder='name*' name='name' value=name required="")
                 div.form-group
                     label.mb-2(for='gender') Gender:
                     input.form-control(type='text', placeholder='gender' name='gender' value=gender)
                 div.form-group
                     label.mb-2(for='licenseId') Driver's License Id:
-                    input.form-control(type='text', placeholder='licenseId' name='licenseId' value=licenseId)
+                    input.form-control(type='text', placeholder='licenseId*' name='licenseId' value=licenseId required="")
                 div.form-group
                     label.mb-2(for='CardHolderName') CardHolderName:
-                    input.form-control(type='text', placeholder='CardHolderName' name='CardHolderName' value=CardHolderName)
+                    input.form-control(type='text', placeholder='CardHolderName*' name='CardHolderName' value=CardHolderName required="")
                 div.form-group
                     label.mb-2(for='CardNumber') CardNumber:
-                    input.form-control(type='text', placeholder='CardNumber' name='CardNumber' value=CardNumber)
+                    input.form-control(type='text', placeholder='CardNumber*' name='CardNumber' value=CardNumber required="")
                 div.form-group
                     label.mb-2(for='expiryDate') expiryDate:
-                    input.form-control(type='text', placeholder='expiryDate' name='expiryDate' value=expiryDate)
+                    input.form-control(type='text', placeholder='expiryDate*' name='expiryDate' value=expiryDate required="")
                 div.form-group
                     label.mb-2(for='CVV') CVV:
-                    input.form-control(type='text', placeholder='CVV' name='CVV' value=CVV)
+                    input.form-control(type='text', placeholder='CVV*' name='CVV' value=CVV required="")
                 
-                button(type='submit') Sign up
+                button.btn.btn-primary.submit.mt-2.read-more(type='submit') Sign up
 
                 p.text-center.mt-4
                     a(href='/account/log-in') Already have an account? Log in here

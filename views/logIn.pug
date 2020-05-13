@@ -12,6 +12,7 @@ block content
                 div.form-group
                     label(for='password') Password:
                     input.form-control(type='password', placeholder='password' name='password' value=password)
+                div.text-danger #{message}  
                 button.btn.btn-primary.submit.mt-2.read-more(type='submit') Log in
                 p.text-center.mt-4
                     a(href='/account/sign-up') No account? Sign up here
