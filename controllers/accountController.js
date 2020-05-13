@@ -98,9 +98,9 @@ const createAccount = async (req, res) => {
       res.status(400);
       console.log("This username has been taken");
       res.render('signup', {
-        a:'This username has been taken111',
+        message:'This username has been taken',
       });
-      res.redirect('account/sign-up');
+      
     }
     else{
       var item = ({
