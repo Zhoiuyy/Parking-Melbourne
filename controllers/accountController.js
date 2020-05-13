@@ -185,6 +185,7 @@ const updateAccounts = async (req, res) => {
       // using the updating form in pug to finish updating
       res.render('update', {
         title: 'update',
+        cookie: req.signedCookies.account
       }); 
 
       res.redirect('/');
