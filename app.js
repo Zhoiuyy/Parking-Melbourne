@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser('secretadd'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-let whitelist = ['/account/log-in','/account/log-in/','/','/account/sign-up','/contact','/feedback'];
+let whitelist = ['/account/log-in','/account/log-in/','/','/account/sign-up','/contact'];
 
 app.use(function(req, res, next) {
   var url = req.url;
