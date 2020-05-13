@@ -30,6 +30,7 @@ const getAccountByUsername = async (req, res) => {
           res.render('viewaccount', {
             title: 'viewaccount', 
             account: account,
+            cookie: req.signedCookies.account
           }); 
         }
     } catch (err) {
@@ -107,6 +108,7 @@ const createAccount = async (req, res) => {
       // display the warning for the user that the username has been taken
       res.render('signup', {
         message:'This username has already been used by others',
+        cookie: req.signedCookies.account
       });
       
     }
@@ -127,13 +129,15 @@ const createAccount = async (req, res) => {
     data.save();
     // remind the user that signed up is successful.
     res.render('sendMessage', {
-      message: 'You have successfully signed up the account.'
+      message: 'You have successfully signed up the account.',
+      cookie: req.signedCookies.account
     });} 
     }
     catch (err) {
       res.status(400);
       res.render('sendMessage', {
-        message: 'You have failed signing up.'
+        message: 'You have failed signing up.',
+        cookie: req.signedCookies.account
       });
     }
 }
