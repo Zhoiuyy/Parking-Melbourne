@@ -22,9 +22,11 @@ const getAccountByUsername = async (req, res) => {
     try {
         const account = await Account.find({"username":req.params.username});
         if (!account) {
+          // send the message if the user is not in the database
           console.log('account not found'); 
           return res.send('account not found'); 
         } else {
+          // display the user in viewaccout format
           res.render('viewaccount', {
             title: 'viewaccount', 
             account: account,
@@ -36,6 +38,7 @@ const getAccountByUsername = async (req, res) => {
     } 
 };
 
+// add some comment here
 const getPaymentDetailsById = async (req, res) => {
   try {
       const account = await Account.find({"id":req.params.id}, {CardHolderName : 1, CardNumber : 1, expiryDate : 1, CVV : 1});
@@ -52,10 +55,12 @@ const getPaymentDetailsById = async (req, res) => {
   } 
 };
 
+// fucntion that handles the log in request
 const accountLogIn = async (req, res) => {
   const Username = req.body.username;
   const userPassword = req.body.password;
   try {
+    // check if the account in the db first
     const account = await Account.findOne({"username":Username});
     if (!account) {
       res.status(400);
@@ -65,7 +70,7 @@ const accountLogIn = async (req, res) => {
         cookie: req.signedCookies.account
       });
     }
-
+    // then check if the password can match with the password stored in db
     const checkPassword = Crypt.decrypt(userPassword, account.password);
     if(!checkPassword){
       console.log("password incorrect");
@@ -89,14 +94,17 @@ const accountLogIn = async (req, res) => {
   }
 };
 
-// function to create User
+// function to create a new account
 const createAccount = async (req, res) => {
   
   try {
+    // since the username is designed to be unique, check if the username
+    // has been taken first
     const account = await Account.findOne({"username":req.body.username,});
     if (account) {
       res.status(400);
       console.log("This username has already been used by others");
+      // display the warning for the user that the username has been taken
       res.render('signup', {
         message:'This username has already been used by others',
       });
@@ -115,10 +123,9 @@ const createAccount = async (req, res) => {
         CVV:req.body.CVV
     });
         
-   // var item = req.body;
     var data = new Account(item);
     data.save();
-
+    // remind the user that signed up is successful.
     res.render('sendMessage', {
       message: 'You have successfully signed up the account.'
     });} 
@@ -132,7 +139,7 @@ const createAccount = async (req, res) => {
 }
 
 
-
+// add some comment here
 const deleteAccounts = async (req, res) => {
   try {
       
@@ -150,13 +157,12 @@ const deleteAccounts = async (req, res) => {
 };
 
 
-
+// function that handle the updating request of the account
 const updateAccounts = async (req, res) => {
   try {
-      
-      //var item = req.body;
-      //Account.findByIdAndUpdate(id,item);
+  
       const username = req.params.username;
+      // check if there is an accout in the db first
       Account.findByUsername(username, function(err, doc) {
       if (err) {
         console.error('error, no account found');
@@ -172,6 +178,7 @@ const updateAccounts = async (req, res) => {
      
       doc.save();
       });
+      // using the updating form in pug to finish updating
       res.render('update', {
         title: 'update',
       }); 
@@ -185,7 +192,7 @@ const updateAccounts = async (req, res) => {
 
 
 
-// remember to export the functions
+// export the functions
 module.exports = {
     getAllAccounts,
     createAccount,

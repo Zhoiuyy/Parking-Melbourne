@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// account schema stored in the database
 const accountSchema = new mongoose.Schema({
     username:String,
     password:String,

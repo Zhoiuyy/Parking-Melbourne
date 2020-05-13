@@ -1,6 +1,6 @@
 const mongoose = require("mongoose"); 
 
-// create database schemas
+// parking history schema stored in the database
 const viewing_statusSchema = new mongoose.Schema({
     username: String, 
     user_id: String, 
