@@ -66,8 +66,8 @@ const accountLogIn = async (req, res) => {
     if (!account) {
       res.status(400);
       console.log("account not found");
-      return res.render('sendMessage', {
-        message: 'Account not found',
+      return res.render('logIn', {
+        message: 'Account not found!!!',
         cookie: req.signedCookies.account
       });
     }
@@ -75,8 +75,8 @@ const accountLogIn = async (req, res) => {
     const checkPassword = Crypt.decrypt(userPassword, account.password);
     if(!checkPassword){
       console.log("password incorrect");
-      return res.render('sendMessage', {
-        message: 'Password incorrect',
+      return res.render('logIn', {
+        message: 'Password incorrect!!!',
         cookie: req.signedCookies.account
       });
     }
