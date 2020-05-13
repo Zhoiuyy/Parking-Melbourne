@@ -82,12 +82,6 @@ const accountLogIn = async (req, res) => {
     }
     res.cookie("account",Username, {maxAge: 60000000 , signed:true});
     res.redirect('/');
-    /*
-    res.render('sendMessage', {
-      message: 'login successful',
-      cookie: req.signedCookies.account
-    });
-    */
     
   } catch (err) {
     res.status(400);
@@ -129,7 +123,7 @@ const createAccount = async (req, res) => {
     data.save();
     // remind the user that signed up is successful.
     res.render('sendMessage', {
-      message: 'You have successfully signed up the account.',
+      message: 'You have successfully signed up the account. You can log in now.',
       cookie: req.signedCookies.account
     });} 
     }
@@ -142,23 +136,6 @@ const createAccount = async (req, res) => {
     }
 }
 
-
-// add some comment here
-const deleteAccounts = async (req, res) => {
-  try {
-      
-      const username = req.params.username;
-      Account.findByIdAndRemove(username).exec();
-      res.send("The account was successfully deleted， username = " + username);
-      
-      
-      res.redirect('/');
-      
-  } catch (err) {
-      res.status(400);
-      return res.send("Database query failed");
-  } 
-};
 
 
 // function that handle the updating request of the account
@@ -204,6 +181,5 @@ module.exports = {
     getAccountByUsername,
     updateAccounts,
     getPaymentDetailsById,
-    deleteAccounts,
     accountLogIn,
 };
