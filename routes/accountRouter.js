@@ -27,7 +27,7 @@ accountRouter.get('/sign-up', function(req, res, next) {
 accountRouter.get('/log-out', function(req, res, next) {
   res.clearCookie('account')
   res.redirect('/')
-});
+}); 
 
 accountRouter.post('/log-out', function(req, res, next) {
   res.clearCookie('account')
