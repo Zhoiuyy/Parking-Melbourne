@@ -30,6 +30,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser('secretadd'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//these are the page can be browse without logging in
 let whitelist = ['/account/log-in','/account/log-in/','/','/account/sign-up','/contact'];
 
 app.use(function(req, res, next) {

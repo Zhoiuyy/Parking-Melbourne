@@ -15,6 +15,9 @@ html
                     #logo
                         a(href='/')
                             |   Easiparking
+                // check if logging in through cookie
+                // if logging in, display links to the  route of account and log out      
+                // if not logging in, display links to the route of log in and sign up
                 if cookie
                     div.text-right
                         a.btn(href='/account/'+ cookie)
@@ -23,7 +26,6 @@ html
                         a.btn(href='/account/log-out')
                             span.fa.fa-sign-out
                             |   Log out
-                    
                 else       
                     div.text-right
                         a.btn(href='/account/log-in') 
