@@ -37,19 +37,21 @@ accountRouter.post('/log-out', function(req, res, next) {
 
 accountRouter.post('/sign-up', accountController.createAccount);
 
-
+// page for update the account
 accountRouter.get('/:username/update', function(req, res, next) {
   res.render('update', {
     title: 'update'
   }); 
 });
 
+// handle the POST request to update an account
 accountRouter.post('/:username/update',accountController.updateAccounts);
 
 //accountRouter.get('/:id/delete',accountController.deleteAccounts);
 
 accountRouter.get('/:username/history', parkingController.getStatusByUsername);
 
+// page for a specific account
 accountRouter.get('/:username', accountController.getAccountByUsername);
 
 accountRouter.get('/:username/payment-details',accountController.getPaymentDetailsById);
