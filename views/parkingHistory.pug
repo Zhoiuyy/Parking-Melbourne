@@ -7,25 +7,28 @@ block content
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Username</th>
+                    <th scope="col">Registration Number</th>
                     <th scope="col">Location</th>
-                    <th scope="col">session</th>
-                    <th scope="col">start_time</th>
-                    <th scope="col">finsih_time</th>
-                    <th scope="col">status</th>
+                    <th scope="col">Session Duration</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Start_time</th>
+                    <th scope="col">Finsih_time</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Parking ID</th>
                 </tr>
             </thead>
         
             <tbody>
-                each status in status_list
+                each hist in parkingHistorys
                     <tr>
-                        <td> 
-                            a(href= status.username + 'history') #{status.username}</td>
-                        <td> #{status.location}</td>
-                        <td> #{status.session}</td>
-                        <td> #{status.start_time}</td>
-                        <td> #{status.end_time}</td>
-                        <td> #{status.status}</td>
+                        <td> #{hist.registrationNumber}</td>
+                        <td> #{hist.location}</td>
+                        <td> #{hist.session}</td>
+                        <td> #{hist.date}</td>
+                        <td> #{hist.start}</td>
+                        <td> #{hist.end}</td>
+                        <td> #{hist.status}</td>
+                        <td> #{hist.parkingID}</td>
                     </tr>
             </tbody>
         </table>

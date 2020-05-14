@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Crypt = require("./crypt");
-
 // import account model
 const Account = mongoose.model("account");
 
@@ -8,8 +7,8 @@ const Account = mongoose.model("account");
 // function to handle a request to get all users
 const getAllAccounts = async (req, res) => {
   try {
-    const all_accounts = await Account.find();
-    return res.send(all_accounts);
+    const allAccounts = await Account.find();
+    return res.send(allAccounts);
   } catch (err) {
     res.status(400);
     return res.send("Database query failed");

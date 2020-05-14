@@ -4,7 +4,7 @@ var parkingRouter = express.Router();
 
 var parkingController = require('../controllers/parkingController.js');
  
-const Viewing_status = mongoose.model("viewing_status"); 
+//const parkingh = mongoose.model("viewing_status"); 
 
 // access homepage of parking 
 parkingRouter.get('/', (req, res) => {
