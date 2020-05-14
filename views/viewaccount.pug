@@ -4,20 +4,54 @@ block content
     //table displaying personal information 
     div.container.py-md-5
     h3.title-w3pvt.text-center My account
-        div.login.px-sm-4.mx-auto.mw-100.login-wrapper
-            table.gridtable
-                tr
-                    th Username:
-                    td #{account.username}      
-                tr
-                    th Name:
-                    td #{account.name}
-                tr  
-                    th Gender:
-                    td #{account.gender}
-                tr
-                    th License:
-                    td #{account.licenseId}
+        #accordion
+            .card
+                .card-header
+                    a.card-link(data-toggle='collapse' href='#collapseOne')
+                        h.small.text-secondary Personal Information
+                #collapseOne.collapse.show(data-parent='#accordion')
+                    .card-body
+                        table.gridtable
+                            tr
+                                th Username:
+                                td #{account.username}      
+                            tr
+                                th Name:
+                                td #{account.name}
+                            tr  
+                                th Gender:
+                                td #{account.gender}
+            .card
+                .card-header
+                    a.collapsed.card-link(data-toggle='collapse' href='#collapseTwo')
+                        h.small.text-secondary  Driver information
+                #collapseTwo.collapse(data-parent='#accordion')
+                    .card-body 
+                        table.gridtable
+                            tr
+                                th License:
+                                td #{account.licenseId}
+            .card
+                .card-header
+                    a.collapsed.card-link(data-toggle='collapse' href='#collapseThree')
+                        h.small.text-secondary  Payment details
+                #collapseThree.collapse(data-parent='#accordion')
+                    .card-body
+                        table.gridtable
+                            tr
+                                th CardHolderName:
+                                td #{account.CardHolderName}
+                            tr
+                                th CardNumber
+                                td #{account.CardNumber}
+                            tr
+                                th expiryDate
+                                td #{account.expiryDate}
+                            tr
+                                th CVV
+                                td #{account.CVV}
+
+            
         div.text-center
             a.btn(href='/account/'+account.username+'/history') 
                 span.fa.fa-list

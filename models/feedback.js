@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 
-// account schema stored in the database
+// feedback schema stored in the database
 const feedbackSchema = new mongoose.Schema({
     comment:String,
+    parkingId:String,
 });
 
 const Feedback = mongoose.model("feedback", feedbackSchema,"feedback");
