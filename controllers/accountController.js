@@ -28,6 +28,7 @@ const getAccountByUsername = async (req, res) => {
           res.render('viewaccount', {
             title: 'viewaccount', 
             account: account,
+            cookie: req.signedCookies.account, 
           }); 
         }
     } catch (err) {
@@ -62,7 +63,7 @@ const accountLogIn = async (req, res) => {
       console.log("account not found");
       return res.render('sendMessage', {
         message: 'Account not found',
-        cookie: req.signedCookies.account
+        cookie: req.signedCookies.account, 
       });
     }
 
@@ -98,7 +99,8 @@ const createAccount = async (req, res) => {
       res.status(400);
       console.log("This username has been taken");
       return res.render('sendMessage', {
-        message: 'This username has been taken'
+        message: 'This username has been taken', 
+        cookie: req.signedCookies.account, 
       });
     }
     else{
@@ -119,13 +121,15 @@ const createAccount = async (req, res) => {
     data.save();
 
     res.render('sendMessage', {
-      message: 'You have successfully signed up the account.'
+      message: 'You have successfully signed up the account.',
+      cookie: req.signedCookies.account, 
     });} 
     }
     catch (err) {
       res.status(400);
       res.render('sendMessage', {
-        message: 'You have failed signing up.'
+        message: 'You have failed signing up.', 
+        cookie: req.signedCookies.account, 
       });
     }
 }
@@ -172,10 +176,12 @@ const updateAccounts = async (req, res) => {
      
       doc.save();
       });
-      res.render('update', {
-        title: 'update',
+      console.log('information updated successfully')
+      return res.render('sendMessage', {
+        message: 'You have successfully updated your information!',
+        cookie: req.signedCookies.account, 
       }); 
-      res.redirect('/');
+
   } catch (err) {
       res.status(400);
       return res.send("Database query failed");

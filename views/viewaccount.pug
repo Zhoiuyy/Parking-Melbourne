@@ -3,19 +3,19 @@ extends default
 block content
     div.container.py-md-5
     h3.title-w3pvt.text-center My account
-        div.main
-            table
+        div.login.px-sm-4.mx-auto.mw-100.login-wrapper
+            table.gridtable
                 tr
-                    td username
+                    th Username:
                     td #{account.username}      
-                tr 
-                    td Name
+                tr
+                    th Name:
                     td #{account.name}
                 tr  
-                    td Gender
+                    th Gender:
                     td #{account.gender}
                 tr
-                    td License 
+                    th License:
                     td #{account.licenseId}
         div.text-center
             a.btn(href='/account/'+account.username+'/history') 

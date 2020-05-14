@@ -2843,3 +2843,15 @@ a.move-top span {
 
 @media screen and (max-width:320px) {}
 
+/* new table style */
+
+table.gridtable {
+    font-size: 11px;
+    text-align: center;
+}
+table.gridtable th {
+    padding: 8px; 
+}
+table.gridtable td {
+    padding: 8px; 
+}

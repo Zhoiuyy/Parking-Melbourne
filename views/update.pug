@@ -1,35 +1,38 @@
 extends default
 
 block content
+    section.contact-main.py-5   
+    div.container.py-md-5
+        h3.title-w3pvt.text-center Update My Information
+        div.login.px-sm-4.mx-auto.mw-100.login-wrapper
 
-    div.main
-        div 
-            h3 Update My Information
-            form(method="POST" action='update')
-                div
-                    label(for='password') Password:
-                    input(type='text', placeholder='password' name='password' id='password' value=password)
-                div
-                    label(for='name') Name:
-                    input(type='text', placeholder='name' name='name' id='name' value=name)
-                div
-                    label(for='gender') Gender:
-                    input(type='text', placeholder='gender' name='gender' id='gender' value=gender)
-                div
-                    label(for='licenseId') Driver's License Id:
-                    input(type='text', placeholder='licenseId' name='licenseId' id='licenseId' value=licenseId)
-                div
-                    label(for='CardHolderName') CardHolderName:
-                    input(type='text', placeholder='CardHolderName' name='CardHolderName' id='CardHolderName' value=CardHolderName)
-                div
-                    label(for='CardNumber') CardNumber:
-                    input(type='text', placeholder='CardNumber' name='CardNumber' id='CardNumber' value=CardNumber)
-                div
-                    label(for='expiryDate') expiryDate:
-                    input(type='text', placeholder='expiryDate' name='expiryDate' id='expiryDate' value=expiryDate)
-                div
-                    label(for='CVV') CVV:
-                    input(type='text', placeholder='CVV' name='CVV' id='CVV' value=CVV)
+            form.login-wrapper.w3pvt_mail_grid_right(method="POST" action='update')
+
+                div.form-group
+                    label.mb-2(for='password') Password:
+                    input.form-control(type='text', placeholder='password' name='password' value=username)
+                
+                div.form-group
+                    label.mb-2(for='name') Full Name:
+                    input.form-control(type='text', placeholder='name' name='name' id='name' value=name)
+                div.form-group
+                    label.mb-2(for='gender') Gender:
+                    input.form-control(type='text', placeholder='gender' name='gender' id='gender' value=gender)
+                div.form-group
+                    label.mb-2(for='licenseId') Driver's License Id:
+                    input.form-control(type='text', placeholder='licenseId' name='licenseId' id='licenseId' value=licenseId)
+                div.form-group
+                    label.mb-2(for='CardHolderName') CardHolderName:
+                    input.form-control(type='text', placeholder='CardHolderName' name='CardHolderName' id='CardHolderName' value=CardHolderName)
+                div.form-group
+                    label.mb-2(for='CardNumber') CardNumber:
+                    input.form-control(type='text', placeholder='CardNumber' name='CardNumber' id='CardNumber' value=CardNumber)
+                div.form-group
+                    label.mb-2(for='expiryDate') expiryDate:
+                    input.form-control(type='text', placeholder='expiryDate' name='expiryDate' id='expiryDate' value=expiryDate)
+                div.form-group
+                    label.mb-2(for='CVV') CVV:
+                    input.form-control(type='text', placeholder='CVV' name='CVV' id='CVV' value=CVV)
 
                 button.btn.btn-primary.submit.mt-2.read-more(type='submit') Update
 
