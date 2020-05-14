@@ -36,7 +36,7 @@ You need to log in before you can browse the other interfaces. Here are the feat
 4. Account overview  
 After logging into the account.   
 User can enter the main page for the overview of the user information by clicking the the username at the top right corner.  
-There will be a few buttons to be clicked and these will redirect the user to update the account information or view the parking history.  
+There will be a few buttons to be clicked at the bottom and these will redirect the user to update the account information or view the parking history.  
   
 
 5. Updating account information  
