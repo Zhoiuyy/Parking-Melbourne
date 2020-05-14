@@ -19,4 +19,4 @@ db.port); });
 
 require("./account");
 require("./location");
-require("./viewing_status");
+require("./parkingHistory");

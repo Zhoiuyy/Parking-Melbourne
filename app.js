@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 
 require('./models/feedback');
 require('./models/account');
-require('./models/Xiyan_db');
+require('./models/XiyanDatabase');
 
 var indexRouter = require('./routes/index');
 var accountRouter = require('./routes/accountRouter');

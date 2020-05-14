@@ -9,8 +9,8 @@ const accountSchema = new mongoose.Schema({
     licenseId:String,
     CardHolderName:String,
     CardNumber:String,
-    expiryDate: String,
-    CVV:String,
+    expiryDate:String,
+    CVV:Number,
 });
 
 const Account = mongoose.model("account", accountSchema,"account");
