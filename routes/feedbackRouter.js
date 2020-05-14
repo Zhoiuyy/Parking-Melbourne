@@ -14,6 +14,7 @@ feedbackRouter.get('/', function(req, res, next) {
 feedbackRouter.post('/', function(req, res, next) {
     var item = ({
         feedback:req.body.feedback,
+        parkingId:req.body.parkingId
     });
     var data = new Feedback(item);
     data.save();

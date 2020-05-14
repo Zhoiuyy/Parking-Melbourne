@@ -36,7 +36,8 @@ accountRouter.get('/log-out', function(req, res, next) {
 //page for update the account
 accountRouter.get('/:username/update', function(req, res, next) {
   res.render('update', {
-    title: 'update'
+    title: 'update',
+    cookie: req.signedCookies.account
   }); 
 });
 
