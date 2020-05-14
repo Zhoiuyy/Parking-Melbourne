@@ -26,6 +26,7 @@ accountRouter.get('/sign-up', function(req, res, next) {
 // handle the POST request to create an account
 accountRouter.post('/sign-up', accountController.createAccount);
 
+
 //for log out
 accountRouter.get('/log-out', function(req, res, next) {
   res.clearCookie('account')
@@ -33,22 +34,24 @@ accountRouter.get('/log-out', function(req, res, next) {
 }); 
 
 //page for update the account
-accountRouter.get('/:id/update', function(req, res, next) {
+accountRouter.get('/:username/update', function(req, res, next) {
   res.render('update', {
     title: 'update'
   }); 
 });
 
 // handle the POST request to update an account
-accountRouter.post('/:id/update',accountController.updateAccounts);
+accountRouter.post('/:username/update',accountController.updateAccounts);
+
 
 // page for viewing parking history
 accountRouter.get('/:username/history', parkingController.getStatusByUsername);
 
 // page for a specific account
-accountRouter.get('/:id', accountController.getAccountByUsername);
+accountRouter.get('/:username', accountController.getAccountByUsername);
 
-//accountRouter.get('/:id/payment-details',accountController.getPaymentDetailsById);
+//accountRouter.get('/:username/payment-details',accountController.getPaymentDetailsById);
+
 
 
 

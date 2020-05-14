@@ -20,7 +20,8 @@ const getAllAccounts = async (req, res) => {
 // function to get account by id
 const getAccountByUsername = async (req, res) => {
     try {
-        const account = await Account.find({"username":req.params.username});
+        console.log(req.params.username); 
+        const account = await Account.findOne({"username":req.params.username});
         if (!account) {
           // send the message if the user is not in the database
           console.log('account not found'); 
@@ -66,6 +67,7 @@ const accountLogIn = async (req, res) => {
     if (!account) {
       res.status(400);
       console.log("account not found");
+
       return res.render('logIn', {
         message: 'Account not found!!!',
         cookie: req.signedCookies.account
@@ -98,6 +100,7 @@ const createAccount = async (req, res) => {
     const account = await Account.findOne({"username":req.body.username,});
     if (account) {
       res.status(400);
+
       console.log("This username has already been used by others");
       // display the warning for the user that the username has been taken
       res.render('signup', {
@@ -143,8 +146,8 @@ const updateAccounts = async (req, res) => {
   try {
   
       const username = req.params.username;
-      // check if there is an accout in the db first
-      Account.findByUsername(username, function(err, doc) {
+      const account = await Account.findOne({"username":req.params.username});
+      Account.findById(account._id, function(err, doc) {
       if (err) {
         console.error('error, no account found');
       }
@@ -160,12 +163,12 @@ const updateAccounts = async (req, res) => {
       doc.save();
       });
       // using the updating form in pug to finish updating
-      res.render('update', {
-        title: 'update',
-        cookie: req.signedCookies.account
+      console.log('information updated successfully')
+      return res.render('sendMessage', {
+        message: 'You have successfully updated your information!',
+        cookie: req.signedCookies.account, 
       }); 
 
-      res.redirect('/');
   } catch (err) {
       res.status(400);
       return res.send("Database query failed");
