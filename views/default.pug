@@ -15,16 +15,21 @@ html
                     #logo
                         a(href='/')
                             |   Easiparking
-                //div #{cookie}
+                // check if logging in through cookie
+                // if logging in, display links to the  route of account and log out      
+                // if not logging in, display links to the route of log in and sign up
                 if cookie
                     div.text-right
-                        a.btn(href='/account') 
+                        a.btn(href='/account/'+ cookie)
                             span.fa.fa-user-circle-o
                             |   #{cookie}
+                        a.btn(href='/account/log-out')
+                            span.fa.fa-sign-out
+                            |   Log out
                 else       
                     div.text-right
                         a.btn(href='/account/log-in') 
-                            span.fa.fa-user-circle-o
+                            span.fa.fa-sign-in
                             |   Log in
                         a.btn(href='/account/sign-up')
                             span.fa.fa-pencil-square-o
@@ -42,7 +47,6 @@ html
                     li
                     a(href='/contact') Contact us
                     li
-                    a(href='/feedback') Feedback
             </div>        
 
         block content

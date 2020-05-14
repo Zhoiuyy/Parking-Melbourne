@@ -24,6 +24,7 @@ const getStatusByUsername = async (req, res) => {
             res.render('parkingHistory', {
                 title: 'parkingHistory',
                 status_list: status_list,
+                cookie: req.signedCookies.account
               });
         }
     } catch (err) {

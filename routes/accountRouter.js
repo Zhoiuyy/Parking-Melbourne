@@ -4,40 +4,36 @@ var accountRouter = express.Router();
 var accountController = require('../controllers/accountController.js');
 var parkingController = require('../controllers/parkingController.js');
 
-
-/* home page */
-
+//all account, for test only
 accountRouter.get('/', accountController.getAllAccounts);
 
+// page for login
 accountRouter.get('/log-in',function(req, res, next) {
   res.render('logIn', {
     cookie: req.signedCookies.account
   });
 });
-
+// handle the POST request to log in 
 accountRouter.post('/log-in',accountController.accountLogIn);
 
-
+//page for sign up
 accountRouter.get('/sign-up', function(req, res, next) {
   res.render('signup', {
     cookie: req.signedCookies.account
   });
 });
 
+// handle the POST request to create an account
+accountRouter.post('/sign-up', accountController.createAccount);
+
+
+//for log out
 accountRouter.get('/log-out', function(req, res, next) {
   res.clearCookie('account')
   res.redirect('/')
-});
+}); 
 
-accountRouter.post('/log-out', function(req, res, next) {
-  res.clearCookie('account')
-});
-
-// handle the POST request to create an account
-
-accountRouter.post('/sign-up', accountController.createAccount);
-
-// page for update the account
+//page for update the account
 accountRouter.get('/:username/update', function(req, res, next) {
   res.render('update', {
     title: 'update'
@@ -47,14 +43,15 @@ accountRouter.get('/:username/update', function(req, res, next) {
 // handle the POST request to update an account
 accountRouter.post('/:username/update',accountController.updateAccounts);
 
-//accountRouter.get('/:id/delete',accountController.deleteAccounts);
 
+// page for viewing parking history
 accountRouter.get('/:username/history', parkingController.getStatusByUsername);
 
 // page for a specific account
 accountRouter.get('/:username', accountController.getAccountByUsername);
 
-accountRouter.get('/:username/payment-details',accountController.getPaymentDetailsById);
+//accountRouter.get('/:username/payment-details',accountController.getPaymentDetailsById);
+
 
 
 
