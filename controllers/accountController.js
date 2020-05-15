@@ -151,7 +151,6 @@ const updateAccounts = async (req, res) => {
         console.error('error, no account found');
       }
       
-      doc.password = Crypt.encrypt(req.body.password),
       doc.name = req.body.name,
       doc.gender = req.body.gender,
       doc.licenseId = req.body.licenseId,
@@ -181,11 +180,13 @@ const updatePassword = async (req, res) => {
       const username = req.params.username;
       const account = await Account.findOne({"username":req.params.username});
       Account.findById(account._id, function(err, doc) {
-        if(req.body.passwordOne.localeCompare(req.body.passwordTwo) == 0){
+        if(req.body.passwordOne.localeCompare(req.body.passwordTwo) == 0){          
           doc.password = Crypt.encrypt(req.body.passwordOne),
           doc.save();
+          console.log('You have successfully updated your password!')
+          res.clearCookie('account')
           return res.render('sendMessage', {
-            message: 'You have successfully updated your password!',
+            message: 'You have successfully updated your password! Please go back to the home page and log in again.',
             cookie: req.signedCookies.account, 
         });
         }
