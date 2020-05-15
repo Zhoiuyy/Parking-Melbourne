@@ -1,5 +1,7 @@
 var express = require('express');
 var accountRouter = express.Router();
+const mongoose = require("mongoose");
+const Account = mongoose.model("account");
 
 var accountController = require('../controllers/accountController.js');
 var parkingController = require('../controllers/parkingController.js');
@@ -34,9 +36,11 @@ accountRouter.get('/log-out', function(req, res, next) {
 }); 
 
 //page for update the account
-accountRouter.get('/:username/update', function(req, res, next) {
+accountRouter.get('/:username/update', async function(req, res, next) {
+  const account = await Account.findOne({"username":req.params.username});
   res.render('update', {
     title: 'update',
+    account: account,
     cookie: req.signedCookies.account
   }); 
 });

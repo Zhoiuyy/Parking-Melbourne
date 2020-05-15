@@ -40,7 +40,7 @@ There will be a few buttons to be clicked at the bottom and these will redirect 
   
 
 5. Updating account information  
-After clicking the update information button on user's overview page, user will be redirected to the page where the user is allowed to type in new information to be updated,You need to update all the information at once, these will not include the username since it cannot be modified after signing up.  
+After clicking the update information button on user's overview page, user will be redirected to the page where the user is allowed to type in new information to be updated, The information will be filled in automatically with your current information, you can change what you want to change, these will not include the username since it cannot be modified after signing up.  
 
 6. View parking history  
 After clicking the parking history button on user's overview page, user will be redirected to the page where it displays the parking history of the current user. It will display the basic information of the each parking in a table form.  
