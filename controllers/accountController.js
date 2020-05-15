@@ -150,6 +150,7 @@ const updateAccounts = async (req, res) => {
       if (err) {
         console.error('error, no account found');
       }
+      
       doc.password = Crypt.encrypt(req.body.password),
       doc.name = req.body.name,
       doc.gender = req.body.gender,

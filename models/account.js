@@ -8,7 +8,7 @@ const accountSchema = new mongoose.Schema({
     gender: String,
     licenseId:String,
     CardHolderName:String,
-    CardNumber:String,
+    CardNumber:Number,
     expiryDate:String,
     CVV:Number,
 });
