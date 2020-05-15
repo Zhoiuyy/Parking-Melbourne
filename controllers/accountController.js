@@ -174,6 +174,7 @@ const updateAccounts = async (req, res) => {
   }
 };
 
+
 const updatePassword = async (req, res) => {
   try {
       const username = req.params.username;
