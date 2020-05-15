@@ -41,20 +41,24 @@ accountRouter.get('/:username/update', function(req, res, next) {
   }); 
 });
 
+//page for update the password
+accountRouter.get('/:username/reset-password', function(req, res, next) {
+  res.render('resetPassword', {
+    title: 'resetPassword',
+    cookie: req.signedCookies.account
+  }); 
+});
+
 // handle the POST request to update an account
 accountRouter.post('/:username/update',accountController.updateAccounts);
 
+// handle the POST request to update an account's password
+accountRouter.post('/:username/reset-password',accountController.updatePassword);
 
 // page for viewing parking history
 accountRouter.get('/:username/history', parkingController.getStatusByUsername);
 
 // page for a specific account
 accountRouter.get('/:username', accountController.getAccountByUsername);
-
-//accountRouter.get('/:username/payment-details',accountController.getPaymentDetailsById);
-
-
-
-
 
 module.exports = accountRouter;
