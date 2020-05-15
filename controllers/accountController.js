@@ -183,9 +183,9 @@ const updatePassword = async (req, res) => {
           doc.password = Crypt.encrypt(req.body.passwordOne),
           doc.save();
           console.log('You have successfully updated your password!')
+          res.clearCookie('account')
           return res.render('sendMessage', {
-            message: req.body.passwordOne,
-            message: 'You have successfully updated your password!',
+            message: 'You have successfully updated your password! Please go back to the home page and log in again.',
             cookie: req.signedCookies.account, 
         });
         }
