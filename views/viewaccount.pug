@@ -50,16 +50,17 @@ block content
                             tr
                                 th CVV
                                 td #{account.CVV}
-
-            
+ 
         div.text-center
             a.btn(href='/account/'+account.username+'/history') 
                 span.fa.fa-list
-                |    My Parking History
+                |   My Parking History
             a.btn(href='/account/'+account.username+'/update') 
                 span.fa.fa-refresh
-                |   Update
-
+                |   Update Personal Information
+            a.btn(href='/account/'+account.username+'/reset-password') 
+                span.fa.fa-refresh
+                |   Reset Password
                 
                     
                         

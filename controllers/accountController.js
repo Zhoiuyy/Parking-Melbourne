@@ -175,6 +175,34 @@ const updateAccounts = async (req, res) => {
   }
 };
 
+const updatePassword = async (req, res) => {
+  try {
+      const username = req.params.username;
+      const account = await Account.findOne({"username":req.params.username});
+      Account.findById(account._id, function(err, doc) {
+        if(req.body.passwordOne.localeCompare(req.body.passwordTwo) == 0){          
+          // doc.password = Crypt.encrypt(req.body.passwordOne),
+          // doc.save();
+          // console.log('You have successfully updated your password!')
+          return res.render('sendMessage', {
+            message: req.body.passwordOne,
+            // message: 'You have successfully updated your password!',
+            cookie: req.signedCookies.account, 
+        });
+        }
+        else{
+          res.render('resetPassword', {
+            message:'The two passwords have to match',
+            cookie: req.signedCookies.account
+          });
+        }
+        
+      });
+  } catch (err) {
+      res.status(400);
+      return res.send("Database query failed");
+  }
+};
 
 
 // export the functions
@@ -185,4 +213,5 @@ module.exports = {
     updateAccounts,
     getPaymentDetailsById,
     accountLogIn,
+    updatePassword
 };
