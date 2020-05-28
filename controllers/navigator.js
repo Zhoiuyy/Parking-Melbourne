@@ -1,5 +1,17 @@
 const mongoose = require("mongoose");
 const Location = mongoose.model("locations");
+/*
+const showmap = async (req, res) => {
+    try {
+        res.render('findCarPark', {
+        cookie: req.signedCookies.account
+        }); 
+    } catch (err) {
+    res.status(400);
+    return res.send("Database query failed");
+    }
+};
+*/
 
 // print the starting point and destination
 const navigate = async (req, res) => {

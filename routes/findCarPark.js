@@ -7,8 +7,11 @@ const navigator = require('../controllers/navigator.js')
 // add our router
 const router = express.Router();
 
-router.get('/', function(req, res, next) {res.send('Welcome to find-car-park homepage');});
-
+router.get('/', function(req, res, next) {
+    res.render('findCarPark', {
+      cookie: req.signedCookies.account
+    }); 
+  });
 // get current location
 router.get('/get-curr-location', (req, res) => locationController.getCurrLocation(req, res));
 

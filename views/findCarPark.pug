@@ -1,0 +1,78 @@
+extends default
+
+block content
+    section.contact-main.py-5
+        div.container.py-md-5
+            h3.title-w3pvt.text-center MAP
+            #map(tabindex='0' aria-label='Map' width='800px' height='700px' style='position: absolute; width: 800px; height: 700px; cursor: pointer; left:260px;')
+            //#map(style='width: 700px; height: 600px; position: relative')
+      
+
+            //script.
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'UA-87359806-2');
+            //style.
+                .mapboxgl-popup-content {
+                background: hsla(0,0%,100%,0.9);
+                padding:5px;
+                }
+            
+            //#map.mapboxgl-map
+              .mapboxgl-canvas-container.mapboxgl-interactive.mapboxgl-touch-drag-pan.mapboxgl-touch-zoom-rotate
+                canvas.mapboxgl-canvas(tabindex='0' aria-label='Map' width='2356' height='1312' style='position: absolute; width: 1178px; height: 656px; cursor: pointer;')
+              .mapboxgl-control-container
+                .mapboxgl-ctrl-top-left
+                .mapboxgl-ctrl-top-right
+                  .mapboxgl-ctrl.mapboxgl-ctrl-group
+                    button.mapboxgl-ctrl-icon.mapboxgl-ctrl-zoom-in(type='button' aria-label='Zoom In')
+                    button.mapboxgl-ctrl-icon.mapboxgl-ctrl-zoom-out(type='button' aria-label='Zoom Out')
+                    button.mapboxgl-ctrl-icon.mapboxgl-ctrl-compass(type='button' aria-label='Reset North')
+                      span.mapboxgl-ctrl-compass-arrow(style='transform: rotate(0deg);')
+                .mapboxgl-ctrl-bottom-left
+                  .mapboxgl-ctrl
+                    a.mapboxgl-ctrl-logo(target='_blank' href='https://www.mapbox.com/' aria-label='Mapbox logo')
+                .mapboxgl-ctrl-bottom-right
+                
+            
+            #legend(style='display: block; width:200px;')
+              .bullet(style='border-color: #ff8189')  
+              |  15 minutes
+              br
+              .bullet(style='border-color: #ffb359')  
+              |  30 minutes
+              br
+              .bullet(style='border-color: #fed771')  
+              |  60 minutes
+              br
+              .bullet(style='border-color: #7bccc4')  
+              |  120 minutes
+              br
+              .bullet(style='border-color: #43a2ca')  
+              |  240 minutes
+              br
+              .bullet-occupancy(style='background-color: #000000')  
+              |  Occupied
+              br
+              .bullet-occupancy(style='background-color: white')  
+              |  Vacant
+              br
+              .bullet-disabled(style='border-color: #D4D6DB')  
+              |  Disabled only
+            #permit-mode(style='display: block;width:200px; height:520px')
+              input#permit(type='checkbox' name='permit')
+              label(for='permit') Disabled permit
+          
+            script(src='/parkingsensor/map.js')
+          
+
+
+            //.clearfix
+                iframe(title='Parking sensor map' frameborder='0' name='MSOPageViewerWebPart_WebPartWPQ1' width='100%' height='600px' src='https://city-of-melbourne.github.io/parking-map/#sensordata=vh2v-4nfs&baydata=ntht-5rk7' ddf_src='https://city-of-melbourne.github.io/parking-map/#sensordata=vh2v-4nfs&baydata=ntht-5rk7')
+                    .UserGeneric
+                    | The current browser does not support Web pages that contain the IFRAME element. To use this Web Part, you must use a browser that supports this element, such as Internet Explorer 7.0 or later.
+                .ms-clear
+
+                
+          
