@@ -23,7 +23,7 @@ const getAccountByUsername = async (req, res) => {
         const account = await Account.findOne({"username":req.params.username});
         if (!account) {
           // send the message if the user is not in the database
-          console.log('account not found'); 
+          throw new TypeError('No user has been found using this username');
           return res.send('account not found'); 
         } else {
           // display the user in viewaccout format
