@@ -4,19 +4,9 @@ const Crypt = require("./crypt");
 const Account = mongoose.model("account");
 
     
-// function to handle a request to get all users
-const getAllAccounts = async (req, res) => {
-  try {
-    const allAccounts = await Account.find();
-    return res.send(allAccounts);
-  } catch (err) {
-    res.status(400);
-    return res.send("Database query failed");
-  }
-};
     
 
-// function to get account by id
+// function to get account by username
 const getAccountByUsername = async (req, res) => {
     try {
         console.log(req.params.username); 
@@ -39,22 +29,6 @@ const getAccountByUsername = async (req, res) => {
     } 
 };
 
-// add some comment here
-const getPaymentDetailsById = async (req, res) => {
-  try {
-      const account = await Account.find({"id":req.params.id}, {CardHolderName : 1, CardNumber : 1, expiryDate : 1, CVV : 1});
-      if (account){
-          res.send(account); 
-      } 
-      else{
-          res.send("User did not exist");
-      }
-      
-  } catch (err) {
-      res.status(400);
-      return res.send("Database query failed");
-  } 
-};
 
 // fucntion that handles the log in request
 const accountLogIn = async (req, res) => {
@@ -207,11 +181,9 @@ const updatePassword = async (req, res) => {
 
 // export the functions
 module.exports = {
-    getAllAccounts,
     createAccount,
     getAccountByUsername,
     updateAccounts,
-    getPaymentDetailsById,
     accountLogIn,
     updatePassword
 };
