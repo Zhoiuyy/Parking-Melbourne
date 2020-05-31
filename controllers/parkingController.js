@@ -53,7 +53,7 @@ const createStatus = async (req, res) => {
         data.save();
         res.render('sendMessage', {
         message: 'your parking information has been recorded, you can check in your parking history',
-        cookie: req.signedCookies.account
+        cookie: req.signedCookies.account,
         });
         
     } catch (err) {
