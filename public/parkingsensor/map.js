@@ -1,4 +1,6 @@
-
+/**
+ * from city of melbourne
+ */
 mapboxgl.accessToken = "pk.eyJ1IjoiZ2lzZmVlZGJhY2siLCJhIjoiY2l2eDJndmtjMDFkeTJvcHM4YTNheXZtNyJ9.-HNJNch_WwLIAifPgzW2Ig";
 
 function socrataPointToLatLon (point) {
@@ -168,6 +170,7 @@ function initMap() {
         maxZoom:19,
         dragRotate: false,
         pitchWithRotate: false, // no 3D nonsense
+        //center: '<div #{location}>'
         center: [144.963, -37.814]
     });
     map.whenLoaded = function(f) { 

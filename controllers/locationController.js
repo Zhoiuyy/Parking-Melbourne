@@ -19,12 +19,13 @@ const updateDestination = async (req, res) => {
       console.log("Warning, cannot find dest in the datebase!");
     }
     doc.name = req.body.name,
-    doc.address = req.body.address,
+   
+    
+      doc.address = req.body.address,
     doc.postcode = req.body.postcode,
     
     doc.save();
   });
-  res.redirect('/');
 }
     
 // insert a new location into the database.
