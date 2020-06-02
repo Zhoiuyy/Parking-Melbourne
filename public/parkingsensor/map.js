@@ -170,7 +170,6 @@ function initMap() {
         maxZoom:19,
         dragRotate: false,
         pitchWithRotate: false, // no 3D nonsense
-        //center: '<div #{location}>'
         center: [144.963, -37.814]
     });
     map.whenLoaded = function(f) { 
@@ -463,3 +462,8 @@ map.whenLoaded(function() {
     addLayers($('#permit').is(':checked'));
     loopData();
 });
+
+function mySubmitFunction(e) {
+    ///e.preventDefault();
+    return false;
+  }

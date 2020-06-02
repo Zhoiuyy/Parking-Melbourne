@@ -20,3 +20,5 @@ db.port); });
 require("./account");
 require("./location");
 require("./parkingHistory");
+require("./layer");
+require("./restriction");

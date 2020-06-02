@@ -4,7 +4,6 @@ const Crypt = require("./crypt");
 const Account = mongoose.model("account");
 
     
-    
 
 // function to get account by username
 const getAccountByUsername = async (req, res) => {
