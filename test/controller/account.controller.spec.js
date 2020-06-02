@@ -46,11 +46,12 @@ describe('accountController', function () {
             const fake = sinon.fake();
             const req = mockRequest({},{});
             const res = mockResponse(fake);
-
+            
+            console.log(req.params.username);
             accountController.getAccountByUsername(req,res);
             const result = fake.lastArg;
     
-           
+            console.log(result);
             expect(result).to.have.property('username');//check one with chai
             expect(result).to.have.keys(['username', 'name', 'licenseId']); //check everything with chai
             result.should.have.property('id'); // different way of checking using should
