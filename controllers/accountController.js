@@ -24,7 +24,7 @@ const getAccountByUsername = async (req, res) => {
           }); 
         }
     } catch (err) {
-        res.status(400);
+        res.status = 400;
         return res.send("Database query failed");
     } 
 };
@@ -38,7 +38,7 @@ const accountLogIn = async (req, res) => {
     // check if the account in the db first
     const account = await Account.findOne({"username":Username});
     if (!account) {
-      res.status(400);
+      res.status = 400;
       console.log("account not found");
 
       return res.render('logIn', {
@@ -72,7 +72,7 @@ const createAccount = async (req, res) => {
     // has been taken first
     const account = await Account.findOne({"username":req.body.username,});
     if (account) {
-      res.status(400);
+      res.status = 400;
 
       console.log("This username has already been used by others");
       // display the warning for the user that the username has been taken
@@ -104,7 +104,7 @@ const createAccount = async (req, res) => {
     });} 
     }
     catch (err) {
-      res.status(400);
+      res.status = 400;
       res.render('sendMessage', {
         message: 'You have failed signing up.',
         cookie: req.signedCookies.account
@@ -143,8 +143,8 @@ const updateAccounts = async (req, res) => {
       }); 
 
   } catch (err) {
-      res.status(400);
-      return res.send("Database query failed");
+    res.status = 400;
+    return res.send("Database query failed");
   }
 };
 
@@ -173,8 +173,8 @@ const updatePassword = async (req, res) => {
         
       });
   } catch (err) {
-      res.status(400);
-      return res.send("Database query failed");
+    res.status = 400;
+    return res.send("Database query failed");
   }
 };
 

@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 // parking history schema stored in the database
 const parkingHistorySchema = new mongoose.Schema({
     username: String, 
-    registrationNumber: String,
+    parkingBayID: String,
     location: String, 
     session: String,
     date: String, 

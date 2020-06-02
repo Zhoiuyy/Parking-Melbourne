@@ -42,7 +42,7 @@ const createStatus = async (req, res) => {
         var myDate = new Date();
         var item = ({
             username:req.signedCookies.account,
-            registrationNumber:req.body.location,
+            parkingBayID:req.body.location,
             status:"parking",
             date: myDate.toLocaleDateString(),
             start: myDate.toLocaleTimeString(),
