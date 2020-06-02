@@ -1,9 +1,8 @@
 const mongoose = require("mongoose");
-const Crypt = require("./crypt");
+const Brypt = require("./brypt");
 // import account model
 const Account = mongoose.model("account");
 
-    
     
 
 // function to get account by username
@@ -47,7 +46,7 @@ const accountLogIn = async (req, res) => {
       });
     }
     // then check if the password can match with the password stored in db
-    const checkPassword = Crypt.decrypt(userPassword, account.password);
+    const checkPassword = Brypt.decrypt(userPassword, account.password);
     if(!checkPassword){
       console.log("password incorrect");
       return res.render('logIn', {
@@ -85,7 +84,7 @@ const createAccount = async (req, res) => {
     else{
       var item = ({
         username:req.body.username,
-        password:Crypt.encrypt(req.body.password),
+        password:Brypt.encrypt(req.body.password),
         name:req.body.name,
         gender:req.body.gender,
         licenseId:req.body.licenseId,
@@ -155,7 +154,7 @@ const updatePassword = async (req, res) => {
       const account = await Account.findOne({"username":req.params.username});
       Account.findById(account._id, function(err, doc) {
         if(req.body.passwordOne.localeCompare(req.body.passwordTwo) == 0){          
-          doc.password = Crypt.encrypt(req.body.passwordOne),
+          doc.password = Brypt.encrypt(req.body.passwordOne),
           doc.save();
           console.log('You have successfully updated your password!')
           res.clearCookie('account')
