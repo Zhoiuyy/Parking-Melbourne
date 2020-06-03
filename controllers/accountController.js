@@ -3,27 +3,14 @@ const Crypt = require("./crypt");
 // import account model
 const Account = mongoose.model("account");
 
-    
-// function to handle a request to get all users
-const getAllAccounts = async (req, res) => {
-  try {
-    const allAccounts = await Account.find();
-    return res.send(allAccounts);
-  } catch (err) {
-    res.status(400);
-    return res.send("Database query failed");
-  }
-};
-    
-
-// function to get account by id
+// function to get account by username
 const getAccountByUsername = async (req, res) => {
     try {
         console.log(req.params.username); 
         const account = await Account.findOne({"username":req.params.username});
         if (!account) {
           // send the message if the user is not in the database
-          throw new TypeError('No user has been found using this username');
+          throw new AssertionError('No user has been found using this username');
           return res.send('account not found'); 
         } else {
           // display the user in viewaccout format
@@ -32,6 +19,7 @@ const getAccountByUsername = async (req, res) => {
             account: account,
             cookie: req.signedCookies.account
           }); 
+          return account;
         }
     } catch (err) {
         res.status(400);
@@ -39,22 +27,6 @@ const getAccountByUsername = async (req, res) => {
     } 
 };
 
-// add some comment here
-const getPaymentDetailsById = async (req, res) => {
-  try {
-      const account = await Account.find({"id":req.params.id}, {CardHolderName : 1, CardNumber : 1, expiryDate : 1, CVV : 1});
-      if (account){
-          res.send(account); 
-      } 
-      else{
-          res.send("User did not exist");
-      }
-      
-  } catch (err) {
-      res.status(400);
-      return res.send("Database query failed");
-  } 
-};
 
 // fucntion that handles the log in request
 const accountLogIn = async (req, res) => {
@@ -204,14 +176,19 @@ const updatePassword = async (req, res) => {
   }
 };
 
+const getAllAccount = async (req, res) => {
+  const filter = {};
+  const all = await Account.find(filter);
+  res.send(all);
+  return all;
+};
+
 
 // export the functions
 module.exports = {
-    getAllAccounts,
     createAccount,
     getAccountByUsername,
     updateAccounts,
-    getPaymentDetailsById,
     accountLogIn,
     updatePassword
 };

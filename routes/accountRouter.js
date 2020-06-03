@@ -6,9 +6,6 @@ const Account = mongoose.model("account");
 var accountController = require('../controllers/accountController.js');
 var parkingController = require('../controllers/parkingController.js');
 
-//all account, for test only
-accountRouter.get('/', accountController.getAllAccounts);
-
 // page for login
 accountRouter.get('/log-in',function(req, res, next) {
   res.render('logIn', {
