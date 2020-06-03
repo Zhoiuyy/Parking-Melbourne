@@ -3,15 +3,28 @@ const supertest = require('supertest');
 const app = require('../../app');
 const request = require('supertest');
 const Account = require('../../models/account');
+const Layer = require('../../models/layer');
 
 // This section of simulate a test when your application IS RUNNING, we are testing by DECLARING ROUTES, and see if it returns the correct data
 describe('integration test', function() {
     
     describe('createAccount', function(){
-        context('check if we can add an account', function(){
-            it('post an account', async function(){
+        
+        context('check if we can create an account with existing username', function(){
+            it('duplicate username, the account could not be successfully registere', async function(){
+                let newAccount = {username:'zhangxiyan',password:'testing',name:'testing',gender:'testing',licenseId:'30005',CardHolderName:'testing',CardNumber:'123456789101112',expiryDate:'07/20',CVV:'123'}; 
+                const res = await supertest(app)
+                    .post('/account/sign-up')
+                    .send(newAccount)
+                expect(res.statusCode).to.equal(400);          
+                                         
+                //const account = await Account.findOne({"username":'testing'});
+            })
+        })
+        
+        context('check if we can create an account with valid input', function(){
+            it('the account information should be recorded ', async function(){
                 let newAccount = {username:'testing',password:'testing',name:'WebInfo',gender:'N',licenseId:'30005',CardHolderName:'testing',CardNumber:'123456789101112',expiryDate:'07/20',CVV:'123'}; 
-                //let newAccounts = [...Account, newAccount];
                 const res = await supertest(app)
                     .post('/account/sign-up')
                     .send(newAccount);
@@ -31,17 +44,26 @@ describe('integration test', function() {
     })
 
     describe('getAccountByUsername', function(){
+        context('check if we can get an nonexistent account', function(){
+            it(' will receive status code 400', async function(){
+                const res = await supertest(app)
+                    .get('/account/testing_nonexistent')
+                       
+                expect(res.statusCode).to.equal(400);      
+                 
+                
+                         
+            })
+        })
         context('check if we can get account by username', function(){
-            it('getAccountByUsername', function(done){
+            it('get Account By Username', function(done){
                 supertest(app)
                 .get('/account/testing')
                 .end(async function(req, res) {                
 
-                    // if you don't understand or unsure where does res.body or res.statusCode come form, read more regarding HTTP response
-                    // or even better read the whole Hypertext Transfer Protocol (HTTP) request-respond protocol
+                    
                     expect(res.statusCode).to.equal(200);
-                    //const account = await Account.findOne({"username":'testing'});
-                    //console.log(res.text);
+                    
                     expect(res.text).to.contains('<tr><th>Username:</th><td>testing      </td></tr>');
                    
                     done();
@@ -51,8 +73,18 @@ describe('integration test', function() {
     });
 
     describe('updateAccounts', function(){
-        context('check if we can update an account', function(){
-            it('update an account', async function(){
+        context('check if we can update an nonexistent account', function(){
+            it('can not update, will receive status code 400', async function(){
+                let updateAccount = {name:'testing_nonexistent',gender:'N',licenseId:'10006',CardHolderName:'testing2',CardNumber:'121110987654321',expiryDate:'09/22',CVV:'321'}; 
+                const res = await supertest(app)
+                    .post('/account/testing_nonexistent/update')
+                    .send(updateAccount)
+                expect(res.statusCode).to.equal(400);
+                         
+            })
+        })
+        context('check if we can update an account with valid input', function(){
+            it('update an account successfully, informations should be recorded', async function(){
                 let updateAccount = {name:'testing2',gender:'N',licenseId:'10006',CardHolderName:'testing2',CardNumber:'121110987654321',expiryDate:'09/22',CVV:'321'}; 
                 const res = await supertest(app)
                     .post('/account/testing/update')
@@ -68,7 +100,7 @@ describe('integration test', function() {
                         expect(account2.CardNumber).to.deep.equal(updateAccount.CardNumber);
                         expect(account2.expiryDate).to.deep.equal(updateAccount.expiryDate);
                         expect(account2.CVV).to.deep.equal(updateAccount.CVV);
-                        done();
+                        //done();
                     })
                 
 

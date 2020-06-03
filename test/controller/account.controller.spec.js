@@ -8,7 +8,7 @@ const Account = require('../../models/account');
 const parkingHistory = require('../../models/parkingHistory');
 //const Account = mongoose.model("account");
 var accountController = require('../../controllers/accountController.js');
-var parkingController = require('../../controllers/parkingController.js');
+//var parkingController = require('../../controllers/parkingController.js');
 
 
 describe('accountController', function () {
@@ -42,6 +42,7 @@ describe('accountController', function () {
             assert.equal(result.length, 2);
         })
 */
+/*
         it("account should have username, name, and licenseId", function(){
             const fake = sinon.fake();
             const req = mockRequest({},{});
@@ -59,6 +60,7 @@ describe('accountController', function () {
             // but if you really insist...
             assert.deepEqual(Object.keys(result), ['username', 'name', 'licenseId']); //check with assert
         })
+        */
 /*
         it('should return all authors', function(){
             const fake = sinon.fake();
