@@ -106,7 +106,7 @@ Parking Management - This allows user to see the real-time parking bay informati
 
 10. Find Car Park
 URL: https://easiparking.herokuapp.com/findCarPark  
-Click the 'Find Car Park' on the middle bar, user can overviews the parking information of the Melbourne city,  find a suitable parking bay from the map, enter the parking bay ID to start parking.
+Click the 'Find Car Park' on the middle bar, user can overviews the parking information of the Melbourne city,  find a suitable parking bay from the map, enter the parking bay ID to start parking.  
 views: views/findCarPark.pug  
 routes: routes/findCarPark.js  
 
@@ -114,7 +114,7 @@ routes: routes/findCarPark.js
 11. Parking status
 URL: https://easiparking.herokuapp.com/FindCarPark/parking  
 After choosing a parking bay, you've started parking now.  
-You can view your parking status by clicking the 'parking' button at the top right corner. You can management your parking status here, there is a button 'end parking and pay' to click below.
+You can view your parking status by clicking the 'parking' button at the top right corner. You can management your parking status here, there is a button 'end parking and pay' to click below.  
 views: views/parking.pug  
 routes: routes/findCarPark.js  
 controllers: controllers/parkingController.js
