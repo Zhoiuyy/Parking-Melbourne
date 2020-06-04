@@ -1,0 +1,32 @@
+extends default
+block content
+    //list the emails
+    section.contact-main.py-5
+        div.container.py-md-5
+            h3.title-w3pvt.text-center(style='position: relative')  Parking status  
+                table.gridtable
+                    tr
+                        th Parking Bay ID:
+                        td #{parking.parkingBayID}      
+                    tr
+                        th status:
+                        td #{parking.status}
+                    tr  
+                        th location:
+                        td #{parking.location}
+                    tr  
+                        th Bay description:
+                        td #{parking.session}
+                    tr  
+                        th parking date:
+                        td #{parking.date}
+                    tr  
+                        th start time:
+                        td #{parking.start}
+                    tr  
+                        th parkingID:
+                        td #{parking.parkingID}
+   
+                a.btn(href='/findCarPark/finishParking') 
+                    span.fa.fa-credit-card-alt
+                    |   end parking and pay

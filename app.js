@@ -11,7 +11,6 @@ require('./models/XiyanDatabase');
 
 var indexRouter = require('./routes/index');
 var accountRouter = require('./routes/accountRouter');
-var parkingRouter = require('./routes/parkingRouter');
 var findCarParkRouter = require('./routes/findCarPark');
 var contactRouter = require('./routes/contactRouter');
 var feedbackRouter = require('./routes/feedbackRouter');
@@ -46,7 +45,6 @@ app.use(function(req, res, next) {
 app.use('/', indexRouter);
 app.use('/account', accountRouter);
 app.use('/findCarPark', findCarParkRouter);
-app.use('/parking', parkingRouter);
 app.use('/contact',contactRouter);
 app.use('/feedback',feedbackRouter);
 

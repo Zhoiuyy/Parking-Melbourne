@@ -24,12 +24,12 @@ describe('integration test', function() {
         
         context('check if we can create an account with valid input', function(){
             it('the account information should be recorded ', async function(){
-                let newAccount = {username:'testing',password:'testing',name:'WebInfo',gender:'N',licenseId:'30005',CardHolderName:'testing',CardNumber:'123456789101112',expiryDate:'07/20',CVV:'123'}; 
+                let newAccount = {username:'testing_create',password:'testing',name:'WebInfo',gender:'N',licenseId:'30005',CardHolderName:'testing',CardNumber:'123456789101112',expiryDate:'07/20',CVV:'123'}; 
                 const res = await supertest(app)
                     .post('/account/sign-up')
                     .send(newAccount);
                 expect(res.statusCode).to.equal(200);                    
-                const account = await Account.findOne({"username":'testing'});
+                const account = await Account.findOne({"username":'testing_create'});
 
                 expect(account.username).to.deep.equal(newAccount.username);
                 expect(account.name).to.deep.equal(newAccount.name);
@@ -39,6 +39,8 @@ describe('integration test', function() {
                 expect(account.CardNumber).to.deep.equal(newAccount.CardNumber);
                 expect(account.expiryDate).to.deep.equal(newAccount.expiryDate);
                 expect(account.CVV).to.deep.equal(newAccount.CVV);
+                // delete testing account after testing
+                Account.findByIdAndRemove(account._id).exec();
             })
         })
     })
