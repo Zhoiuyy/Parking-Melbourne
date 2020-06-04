@@ -6,16 +6,7 @@ const Restriction = mongoose.model("restriction");
 var uuid = require('node-uuid');
 
 
-// print all parking history of all users
-const getAllStatus = async (req, res) => {
-    try {
-        const parkingHistorys = await parkingHistory.find();
-        return res.send(parkingHistorys); 
-    } catch (err) {
-        res.status(400);
-        return res.send("Database query failed");
-    }
-}; 
+
 
 // display a parking record with a specific ID
 const getStatusByUsername = async (req, res) => {
@@ -33,8 +24,58 @@ const getStatusByUsername = async (req, res) => {
               });
         }
     } catch (err) {
-        res.status(400);
+        res.statusCode = 400;
         return res.send("Database query failed"); 
+    }
+}; 
+
+// display a parking information
+const getParkingStatus = async (req, res) => {
+    try {
+       
+        const parking = await parkingHistory.findOne({"status":"parking", "username":req.signedCookies.account});
+        if (!parking) {
+            console.log('parking history not found');
+            res.render('sendMessage', {
+                message: 'You do not have any ongoing parking status, start parking on Find Car Park page',
+                cookie: req.signedCookies.account,
+            });
+        } else {
+            res.render('parking', {
+                parking: parking,
+                cookie: req.signedCookies.account
+            });
+        }
+    } catch (err) {
+        res.statusCode = 400;
+        return res.send("Database query failed"); 
+    }
+}; 
+
+//change parking status
+const finishParking = async (req, res) => {
+    try {
+        var myDate = new Date();
+        const parking = await parkingHistory.findOne({"status":"parking", "username":req.signedCookies.account});
+        parkingHistory.findById(parking._id, function(err, doc) {
+            if (err) {
+              res.statusCode = 400;
+              console.error('error, no account found');
+            }
+            
+            doc.status = "finished",
+            doc.end =  myDate.toLocaleTimeString();
+            doc.save();
+        });
+        res.render('sendMessage', {
+            message: "You have successfully paid for this session! ",
+            cookie: req.signedCookies.account
+        });
+        
+    } catch (err) {
+        res.statusCode = 400;
+        console.log(err);
+        //return res.send("Database query failed"); 
     }
 }; 
 
@@ -76,7 +117,7 @@ const createStatus = async (req, res) => {
         
         
     } catch (err) {
-        res.status=400; 
+        res.statusCode = 400;
         console.log(err);
         return res.send(err);
     }
@@ -85,7 +126,8 @@ const createStatus = async (req, res) => {
 
 
 module.exports = {
-    getAllStatus, 
     getStatusByUsername, 
-    createStatus
+    createStatus,
+    getParkingStatus,
+    finishParking,
 }; 
