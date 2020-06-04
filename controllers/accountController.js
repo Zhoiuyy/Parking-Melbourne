@@ -1,8 +1,13 @@
 const mongoose = require("mongoose");
-const Crypt = require("./crypt");
+const Brypt = require("./brypt");
 // import account model
 const Account = mongoose.model("account");
 
+<<<<<<< HEAD
+=======
+    
+
+>>>>>>> 5b96727f53e44a59ea6dd0502534892afff2eeca
 // function to get account by username
 const getAccountByUsername = async (req, res) => {
     try {
@@ -22,7 +27,7 @@ const getAccountByUsername = async (req, res) => {
           return account;
         }
     } catch (err) {
-        res.status(400);
+        res.status = 400;
         return res.send("Database query failed");
     } 
 };
@@ -36,7 +41,7 @@ const accountLogIn = async (req, res) => {
     // check if the account in the db first
     const account = await Account.findOne({"username":Username});
     if (!account) {
-      res.status(400);
+      res.status = 400;
       console.log("account not found");
 
       return res.render('logIn', {
@@ -45,7 +50,7 @@ const accountLogIn = async (req, res) => {
       });
     }
     // then check if the password can match with the password stored in db
-    const checkPassword = Crypt.decrypt(userPassword, account.password);
+    const checkPassword = Brypt.decrypt(userPassword, account.password);
     if(!checkPassword){
       console.log("password incorrect");
       return res.render('logIn', {
@@ -70,7 +75,7 @@ const createAccount = async (req, res) => {
     // has been taken first
     const account = await Account.findOne({"username":req.body.username,});
     if (account) {
-      res.status(400);
+      res.status = 400;
 
       console.log("This username has already been used by others");
       // display the warning for the user that the username has been taken
@@ -83,7 +88,7 @@ const createAccount = async (req, res) => {
     else{
       var item = ({
         username:req.body.username,
-        password:Crypt.encrypt(req.body.password),
+        password:Brypt.encrypt(req.body.password),
         name:req.body.name,
         gender:req.body.gender,
         licenseId:req.body.licenseId,
@@ -102,7 +107,7 @@ const createAccount = async (req, res) => {
     });} 
     }
     catch (err) {
-      res.status(400);
+      res.status = 400;
       res.render('sendMessage', {
         message: 'You have failed signing up.',
         cookie: req.signedCookies.account
@@ -141,8 +146,8 @@ const updateAccounts = async (req, res) => {
       }); 
 
   } catch (err) {
-      res.status(400);
-      return res.send("Database query failed");
+    res.status = 400;
+    return res.send("Database query failed");
   }
 };
 
@@ -153,7 +158,7 @@ const updatePassword = async (req, res) => {
       const account = await Account.findOne({"username":req.params.username});
       Account.findById(account._id, function(err, doc) {
         if(req.body.passwordOne.localeCompare(req.body.passwordTwo) == 0){          
-          doc.password = Crypt.encrypt(req.body.passwordOne),
+          doc.password = Brypt.encrypt(req.body.passwordOne),
           doc.save();
           console.log('You have successfully updated your password!')
           res.clearCookie('account')
@@ -171,8 +176,8 @@ const updatePassword = async (req, res) => {
         
       });
   } catch (err) {
-      res.status(400);
-      return res.send("Database query failed");
+    res.status = 400;
+    return res.send("Database query failed");
   }
 };
 

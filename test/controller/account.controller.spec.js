@@ -82,6 +82,7 @@ describe('accountController', function () {
             const fake = sinon.fake();
             const req = mockRequest({},{});
             const res = mockResponse(fake);
+<<<<<<< HEAD
 
             saccountController.getAccountByUsername(req,res);
             const result = fake.lastArg;
@@ -90,6 +91,20 @@ describe('accountController', function () {
                 expect(element).to.have.property('username');//check one with chai
                 expect(element).to.have.keys(['username', 'name', 'licenseId']); //check everything with chai
             });
+=======
+            
+            console.log(req.params.username);
+            accountController.getAccountByUsername(req,res);
+            const result = fake.lastArg;
+    
+            console.log(result);
+            expect(result).to.have.property('username');//check one with chai
+            expect(result).to.have.keys(['username', 'name', 'licenseId']); //check everything with chai
+            result.should.have.property('id'); // different way of checking using should
+            // assert.equal(Object.keys(element), ['id', 'first_name', 'last_name']); Not going to work because it does strict equality, not deep comparison
+            // but if you really insist...
+            assert.deepEqual(Object.keys(result), ['username', 'name', 'licenseId']); //check with assert
+>>>>>>> 5b96727f53e44a59ea6dd0502534892afff2eeca
         })
 /*
         it('should return all authors', function(){

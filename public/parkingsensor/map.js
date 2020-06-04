@@ -1,4 +1,6 @@
-
+/**
+ * from city of melbourne
+ */
 mapboxgl.accessToken = "pk.eyJ1IjoiZ2lzZmVlZGJhY2siLCJhIjoiY2l2eDJndmtjMDFkeTJvcHM4YTNheXZtNyJ9.-HNJNch_WwLIAifPgzW2Ig";
 
 function socrataPointToLatLon (point) {
@@ -460,3 +462,8 @@ map.whenLoaded(function() {
     addLayers($('#permit').is(':checked'));
     loopData();
 });
+
+function mySubmitFunction(e) {
+    ///e.preventDefault();
+    return false;
+  }
