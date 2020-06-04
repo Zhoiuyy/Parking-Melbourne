@@ -3,11 +3,8 @@ const Brypt = require("./brypt");
 // import account model
 const Account = mongoose.model("account");
 
-<<<<<<< HEAD
-=======
     
 
->>>>>>> 5b96727f53e44a59ea6dd0502534892afff2eeca
 // function to get account by username
 const getAccountByUsername = async (req, res) => {
     try {
@@ -15,7 +12,8 @@ const getAccountByUsername = async (req, res) => {
         const account = await Account.findOne({"username":req.params.username});
         if (!account) {
           // send the message if the user is not in the database
-          throw new AssertionError('No user has been found using this username');
+          res.statusCode = 400;
+          console.log('account not found'); 
           return res.send('account not found'); 
         } else {
           // display the user in viewaccout format
@@ -27,7 +25,7 @@ const getAccountByUsername = async (req, res) => {
           return account;
         }
     } catch (err) {
-        res.status = 400;
+        res.statusCode = 400;
         return res.send("Database query failed");
     } 
 };
@@ -41,7 +39,7 @@ const accountLogIn = async (req, res) => {
     // check if the account in the db first
     const account = await Account.findOne({"username":Username});
     if (!account) {
-      res.status = 400;
+      res.statusCode = 400;
       console.log("account not found");
 
       return res.render('logIn', {
@@ -62,7 +60,7 @@ const accountLogIn = async (req, res) => {
     res.redirect('/');
     
   } catch (err) {
-    res.status(400);
+    res.statusCode = 400;
     return res.send("Database query failed");
   }
 };
@@ -75,8 +73,7 @@ const createAccount = async (req, res) => {
     // has been taken first
     const account = await Account.findOne({"username":req.body.username,});
     if (account) {
-      res.status = 400;
-
+      res.statusCode = 400;
       console.log("This username has already been used by others");
       // display the warning for the user that the username has been taken
       res.render('signup', {
@@ -107,7 +104,7 @@ const createAccount = async (req, res) => {
     });} 
     }
     catch (err) {
-      res.status = 400;
+      res.statusCode = 400;
       res.render('sendMessage', {
         message: 'You have failed signing up.',
         cookie: req.signedCookies.account
@@ -125,6 +122,7 @@ const updateAccounts = async (req, res) => {
       const account = await Account.findOne({"username":req.params.username});
       Account.findById(account._id, function(err, doc) {
       if (err) {
+        res.statusCode = 400;
         console.error('error, no account found');
       }
       
@@ -146,7 +144,7 @@ const updateAccounts = async (req, res) => {
       }); 
 
   } catch (err) {
-    res.status = 400;
+    res.statusCode = 400;
     return res.send("Database query failed");
   }
 };
@@ -176,7 +174,7 @@ const updatePassword = async (req, res) => {
         
       });
   } catch (err) {
-    res.status = 400;
+    res.statusCode = 400;
     return res.send("Database query failed");
   }
 };

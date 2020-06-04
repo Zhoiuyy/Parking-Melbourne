@@ -8,7 +8,7 @@ const Account = require('../../models/account');
 const parkingHistory = require('../../models/parkingHistory');
 //const Account = mongoose.model("account");
 var accountController = require('../../controllers/accountController.js');
-var parkingController = require('../../controllers/parkingController.js');
+//var parkingController = require('../../controllers/parkingController.js');
 
 
 describe('accountController', function () {
@@ -78,20 +78,11 @@ describe('accountController', function () {
             assert.equal(result.length, 2);
         })
 */
-        it("all accounts should have username, name, and licenseId", function(){
+/*
+        it("account should have username, name, and licenseId", function(){
             const fake = sinon.fake();
             const req = mockRequest({},{});
             const res = mockResponse(fake);
-<<<<<<< HEAD
-
-            saccountController.getAccountByUsername(req,res);
-            const result = fake.lastArg;
-
-            result.forEach(element => {
-                expect(element).to.have.property('username');//check one with chai
-                expect(element).to.have.keys(['username', 'name', 'licenseId']); //check everything with chai
-            });
-=======
             
             console.log(req.params.username);
             accountController.getAccountByUsername(req,res);
@@ -104,8 +95,8 @@ describe('accountController', function () {
             // assert.equal(Object.keys(element), ['id', 'first_name', 'last_name']); Not going to work because it does strict equality, not deep comparison
             // but if you really insist...
             assert.deepEqual(Object.keys(result), ['username', 'name', 'licenseId']); //check with assert
->>>>>>> 5b96727f53e44a59ea6dd0502534892afff2eeca
         })
+        */
 /*
         it('should return all authors', function(){
             const fake = sinon.fake();

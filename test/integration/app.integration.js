@@ -39,39 +39,17 @@ describe('integration test', function() {
 
                     // if you don't understand or unsure where does res.body or res.statusCode come form, read more regarding HTTP response
                     // or even better read the whole Hypertext Transfer Protocol (HTTP) request-respond protocol
-<<<<<<< HEAD
-                    //expect(res.statusCode).to.equal(200);
-                    expect(res.body).to.deep.equal(Account);
-=======
                     expect(res.statusCode).to.equal(200);
                     //const account = await Account.findOne({"username":'testing'});
                     //console.log(res.text);
                     expect(res.text).to.contains('<tr><th>Username:</th><td>testing      </td></tr>');
                    
->>>>>>> 5b96727f53e44a59ea6dd0502534892afff2eeca
                     done();
                 })
             })
         })
     });
 
-<<<<<<< HEAD
-    // describe('createAccount', function(){
-    //     context('check if we can add an account', function(){
-    //         it('post an account', async function(){
-    //             let newAccount = {username:'30005',password:'30005',name:'WebInfo',gender:'N',licenseId:'30005',CardHolderName:'WebInfo',CardNumber:'123456789',expiryDate:'07/20',CVV:'123'}; 
-    //             //let newAccounts = [...Account, newAccount];
-    //             const res = await supertest(app)
-    //                 .post('/account/sign-up')
-    //                 .send(newAccount);
-
-    //             expect(res.statusCode).to.equal(200);
-    //             expect(res.type).to.equal('application/json');
-    //            // expect(res.body).to.deep.equal(newAccounts);
-    //         })
-    //     })
-    // })
-=======
     describe('updateAccounts', function(){
         context('check if we can update an account', function(){
             it('update an account', async function(){
@@ -98,5 +76,4 @@ describe('integration test', function() {
         })
     })
 
->>>>>>> 5b96727f53e44a59ea6dd0502534892afff2eeca
 })
