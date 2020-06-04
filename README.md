@@ -104,14 +104,14 @@ models: models/account.js
 Functionality 3:  
 Parking Management - This allows user to see the real-time parking bay information of Melbourne city, and pick a most suitable parking bay, users can management their parking infomation, such as starting parking, finishing parking, paying.
 
-10. Find Car Park
+10. Find Car Park  
 URL: https://easiparking.herokuapp.com/findCarPark  
 Click the 'Find Car Park' on the middle bar, user can overviews the parking information of the Melbourne city,  find a suitable parking bay from the map, enter the parking bay ID to start parking.  
 views: views/findCarPark.pug  
 routes: routes/findCarPark.js  
 
 
-11. Parking status
+11. Parking status  
 URL: https://easiparking.herokuapp.com/FindCarPark/parking  
 After choosing a parking bay, you've started parking now.  
 You can view your parking status by clicking the 'parking' button at the top right corner. You can management your parking status here, there is a button 'end parking and pay' to click below.  
@@ -120,7 +120,7 @@ routes: routes/findCarPark.js
 controllers: controllers/parkingController.js
 models: models/parkingHistory.js  
 
-12. End parking
+12. End parking   
 End your parking and make a payment by clicking the 'end parking and pay' at the Parking status page.  
 routes: routes/findCarPark.js  
 controllers: controllers/parkingController.js
