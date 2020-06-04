@@ -1,5 +1,4 @@
 const mongoose = require("mongoose"); 
-
 const parkingHistory = mongoose.model("parkingHistory"); 
 const Layer = mongoose.model("layer");
 const Restriction = mongoose.model("restriction");
