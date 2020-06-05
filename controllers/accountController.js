@@ -82,7 +82,7 @@ const createAccount = async (req, res) => {
       
     }
     else{
-      var item = ({
+      const item = ({
         username:req.body.username,
         password:Brypt.encrypt(req.body.password),
         name:req.body.name,
@@ -94,7 +94,7 @@ const createAccount = async (req, res) => {
         CVV:req.body.CVV
     });
         
-    var data = new Account(item);
+    const data = new Account(item);
     data.save();
     // remind the user that signed up is successful.
     res.render('sendMessage', {

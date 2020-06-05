@@ -1,4 +1,4 @@
-var expect = require('chai').expect;
+const expect = require('chai').expect;
 const supertest = require('supertest');
 const app = require('../../app');
 const request = require('supertest');
@@ -9,9 +9,9 @@ const Layer = require('../../models/layer');
 describe('integration test', function() {
     
     describe('createAccount', function(){
-        
+    
         context('check if we can create an account with existing username', function(){
-            it('duplicate username, the account could not be successfully registere', async function(){
+            it('duplicate username, the account could not be successfully registere, will receive status code 400', async function(){
                 let newAccount = {username:'zhangxiyan',password:'testing',name:'testing',gender:'testing',licenseId:'30005',CardHolderName:'testing',CardNumber:'123456789101112',expiryDate:'07/20',CVV:'123'}; 
                 const res = await supertest(app)
                     .post('/account/sign-up')

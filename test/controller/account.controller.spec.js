@@ -1,14 +1,12 @@
-var sinon = require('sinon');
-var expect = require('chai').expect;
-var assert = require('chai').assert;
-var should = require('chai').should();
+const sinon = require('sinon');
+const expect = require('chai').expect;
+const assert = require('chai').assert;
+const should = require('chai').should();
 
 const mongoose = require("mongoose");
 const Account = require('../../models/account');
 const parkingHistory = require('../../models/parkingHistory');
-//const Account = mongoose.model("account");
-var accountController = require('../../controllers/accountController.js');
-//var parkingController = require('../../controllers/parkingController.js');
+const accountController = require('../../controllers/accountController.js');
 
 
 describe('accountController', function () {
