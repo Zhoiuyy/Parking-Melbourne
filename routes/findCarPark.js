@@ -1,6 +1,6 @@
-var express = require('express');
+const express = require('express');
 
-var parkingController = require('../controllers/parkingController.js');
+const parkingController = require('../controllers/parkingController.js');
 
 
 // add our router

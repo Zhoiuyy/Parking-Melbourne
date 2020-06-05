@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const parkingHistory = mongoose.model("parkingHistory"); 
 const Layer = mongoose.model("layer");
 const Restriction = mongoose.model("restriction");
-var uuid = require('node-uuid');
+const uuid = require('node-uuid');
 
 
 
@@ -55,7 +55,7 @@ const getParkingStatus = async (req, res) => {
 //change parking status
 const finishParking = async (req, res) => {
     try {
-        var myDate = new Date();
+        const myDate = new Date();
         const parking = await parkingHistory.findOne({"status":"parking", "username":req.signedCookies.account});
         parkingHistory.findById(parking._id, function(err, doc) {
             if (err) {
@@ -83,10 +83,16 @@ const finishParking = async (req, res) => {
 // input is all the record information
 const createStatus = async (req, res) => {
     try {
-        var layer=  await Layer.findOne({"bay_id":req.body.location});            
-        var restriction = await Restriction.findOne({"BayID":req.body.location});
-
-        if (!layer || !restriction) {
+        const layer=  await Layer.findOne({"bay_id":req.body.location});            
+        const restriction = await Restriction.findOne({"BayID":req.body.location});
+        const parking = await parkingHistory.findOne({"status":"parking", "username":req.signedCookies.account});
+        if(parking){
+            console.log('ongoing parking status');
+            res.render('sendMessage', {
+                message: 'you have ongoing parking status, click parking at the top right corner to finish your parking first',
+                cookie: req.signedCookies.account,
+            });
+        }else if (!layer || !restriction) {
             console.log('parking bay not found');
             res.render('sendMessage', {
                 message: 'parking bay not available, please choose another parking bay',
@@ -94,8 +100,8 @@ const createStatus = async (req, res) => {
             });
         }else{
         
-            var myDate = new Date();
-            var item = ({
+            const myDate = new Date();
+            const item = ({
                 username:req.signedCookies.account,
                 parkingBayID:req.body.location,
                 location: layer.rd_seg_dsc, 
@@ -106,7 +112,7 @@ const createStatus = async (req, res) => {
                 parkingID: uuid.v1(),
             });
             
-            var data = new parkingHistory(item);
+            const data = new parkingHistory(item);
             data.save();
             
             res.render('sendMessage', {

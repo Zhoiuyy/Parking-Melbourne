@@ -1,10 +1,10 @@
-var express = require('express');
-var accountRouter = express.Router();
+const express = require('express');
+const accountRouter = express.Router();
 const mongoose = require("mongoose");
 const Account = mongoose.model("account");
 
-var accountController = require('../controllers/accountController.js');
-var parkingController = require('../controllers/parkingController.js');
+const accountController = require('../controllers/accountController.js');
+const parkingController = require('../controllers/parkingController.js');
 
 // page for login
 accountRouter.get('/log-in',function(req, res, next) {
@@ -13,7 +13,7 @@ accountRouter.get('/log-in',function(req, res, next) {
   });
 });
 // handle the POST request to log in 
-accountRouter.post('/log-in',accountController.accountLogIn);
+accountRouter.post('/log-in',  (req, res) => accountController.accountLogIn (req, res));
 
 //page for sign up
 accountRouter.get('/sign-up', function(req, res, next) {
@@ -23,7 +23,7 @@ accountRouter.get('/sign-up', function(req, res, next) {
 });
 
 // handle the POST request to create an account
-accountRouter.post('/sign-up', accountController.createAccount);
+accountRouter.post('/sign-up',  (req, res) => accountController.createAccount(req, res));
 
 
 //for log out
@@ -51,15 +51,15 @@ accountRouter.get('/:username/reset-password', function(req, res, next) {
 });
 
 // handle the POST request to update an account
-accountRouter.post('/:username/update',accountController.updateAccounts);
+accountRouter.post('/:username/update', (req, res) => accountController.updateAccounts(req, res));
 
 // handle the POST request to update an account's password
-accountRouter.post('/:username/reset-password',accountController.updatePassword);
+accountRouter.post('/:username/reset-password', (req, res) => accountController.updatePassword(req, res));
 
 // page for viewing parking history
-accountRouter.get('/:username/history', parkingController.getStatusByUsername);
+accountRouter.get('/:username/history', (req, res) => parkingController.getStatusByUsername(req, res));
 
 // page for a specific account
-accountRouter.get('/:username', accountController.getAccountByUsername);
+accountRouter.get('/:username', (req, res) => accountController.getAccountByUsername(req, res));
 
 module.exports = accountRouter;
