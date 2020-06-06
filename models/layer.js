@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-// feedback schema stored in the database
+// layer schema stored in the database
 const layerSchema = new mongoose.Schema({
     bay_id:Number,
     rd_seg_dsc:String,
