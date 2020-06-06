@@ -145,6 +145,7 @@ all username should be unique, will receive status code 400
 will receive status code 200  
 
 for account overview  
+
 3. check if we can get an nonexistent account   
 can not find an nonexistent account in database, will receive status code 400  
 
@@ -152,6 +153,7 @@ can not find an nonexistent account in database, will receive status code 400
 will recevie satus code 200  
 
 for account update  
+
 5. check if we can update an nonexistent account  
 can not find an nonexistent account in database, will receive status code 400  
 
