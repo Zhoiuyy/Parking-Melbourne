@@ -106,25 +106,53 @@ Parking Management - This allows user to see the real-time parking bay informati
 
 10. Find Car Park  
 URL: https://easiparking.herokuapp.com/findCarPark  
-Click the 'Find Car Park' on the middle bar, user can overviews the parking information of the Melbourne city,  find a suitable parking bay from the map, enter the parking bay ID to start parking.  
+Click the 'Find Car Park' on the middle bar, user can overviews the parking information of the Melbourne city,  find a suitable parking bay from the map, enter the parking bay ID and press 'Start Parking' to start, the parking status will be recorded.  
 views: views/findCarPark.pug  
 routes: routes/findCarPark.js  
+controllers: controllers/parkingController.js
+models: models/parkingHistory.js models/layer.js models/restriction.js  
 
 
 11. Parking status  
 URL: https://easiparking.herokuapp.com/FindCarPark/parking  
-After choosing a parking bay, you've started parking now.  
-You can view your parking status by clicking the 'parking' button at the top right corner. You can management your parking status here, there is a button 'end parking and pay' to click below.  
+After enter the parking bay, you've started parking now.  
+You can view your parking status by clicking the 'parking' button at the top right corner. You can management your parking status here, there is a button 'End Parking And Pay' to click below.  
 views: views/parking.pug  
 routes: routes/findCarPark.js  
 controllers: controllers/parkingController.js
-models: models/parkingHistory.js  
+models: models/parkingHistory.js   
 
 12. End parking   
 End your parking and make a payment by clicking the 'end parking and pay' at the Parking status page.  
 routes: routes/findCarPark.js  
 controllers: controllers/parkingController.js
 models: models/parkingHistory.js  
+
+
+testing: run npm test  
+
+there are 6 tests  
+for sign up  
+1. check if we can create an account with existing username  
+all username should be unique, will receive status code 400  
+
+2. check if we can create an account with existing username  
+will receive status code 200  
+
+for account overview  
+3. check if we can get an nonexistent account   
+can not find an nonexistent account in database, will receive status code 400  
+
+4. check if we can get account by a valid username   
+will recevie satus code 200  
+
+for account update  
+5. check if we can update an nonexistent account  
+can not find an nonexistent account in database, will receive status code 400  
+
+6. check if we can update an account with valid input  
+willreceive status code 200  
+
 
 
 
