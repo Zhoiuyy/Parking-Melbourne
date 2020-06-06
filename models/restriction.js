@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-// feedback schema stored in the database
+// restriction schema stored in the database
 const restrictionSchema = new mongoose.Schema({
     BayID:Number,
     Description1:String,
