@@ -133,7 +133,8 @@ controllers: controllers/parkingController.js
 models: models/parkingHistory.js  
 
 
-testing: run npm test  
+To Run the testing:  
+Please enter : npm test  
 
 There are 6 tests  
 For sign up  
