@@ -134,7 +134,7 @@ models: models/parkingHistory.js
 
 
 To Run the testing:  
-Please enter : npm test  
+For command line : $ npm test  
 
 There are 6 tests  
 For sign up  
