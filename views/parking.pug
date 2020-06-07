@@ -1,0 +1,31 @@
+extends default
+block content
+    section.contact-main.py-5
+        div.container.py-md-5
+            h3.title-w3pvt.text-center(style='position: relative')  Parking status  
+                table.gridtable
+                    tr
+                        th Parking Bay ID:
+                        td #{parking.parkingBayID}      
+                    tr
+                        th Status:
+                        td #{parking.status}
+                    tr  
+                        th Location:
+                        td #{parking.location}
+                    tr  
+                        th Bay Description:
+                        td #{parking.session}
+                    tr  
+                        th Parking Date:
+                        td #{parking.date}
+                    tr  
+                        th Start Time:
+                        td #{parking.start}
+                    tr  
+                        th ParkingID:
+                        td #{parking.parkingID}
+   
+                a.btn(href='/findCarPark/finishParking') 
+                    span.fa.fa-credit-card-alt
+                    |   End Parking And Pay

@@ -2,19 +2,10 @@ const mongoose = require("mongoose");
 const parkingHistory = mongoose.model("parkingHistory"); 
 const Layer = mongoose.model("layer");
 const Restriction = mongoose.model("restriction");
-var uuid = require('node-uuid');
+const uuid = require('node-uuid');
 
 
-// print all parking history of all users
-const getAllStatus = async (req, res) => {
-    try {
-        const parkingHistorys = await parkingHistory.find();
-        return res.send(parkingHistorys); 
-    } catch (err) {
-        res.status(400);
-        return res.send("Database query failed");
-    }
-}; 
+
 
 // display a parking record with a specific ID
 const getStatusByUsername = async (req, res) => {
@@ -32,8 +23,58 @@ const getStatusByUsername = async (req, res) => {
               });
         }
     } catch (err) {
-        res.status(400);
+        res.statusCode = 400;
         return res.send("Database query failed"); 
+    }
+}; 
+
+// display a parking information
+const getParkingStatus = async (req, res) => {
+    try {
+       
+        const parking = await parkingHistory.findOne({"status":"parking", "username":req.signedCookies.account});
+        if (!parking) {
+            console.log('parking history not found');
+            res.render('sendMessage', {
+                message: 'You do not have any ongoing parking status, start parking on Find Car Park page',
+                cookie: req.signedCookies.account,
+            });
+        } else {
+            res.render('parking', {
+                parking: parking,
+                cookie: req.signedCookies.account
+            });
+        }
+    } catch (err) {
+        res.statusCode = 400;
+        return res.send("Database query failed"); 
+    }
+}; 
+
+//change parking status
+const finishParking = async (req, res) => {
+    try {
+        const myDate = new Date();
+        const parking = await parkingHistory.findOne({"status":"parking", "username":req.signedCookies.account});
+        parkingHistory.findById(parking._id, function(err, doc) {
+            if (err) {
+              res.statusCode = 400;
+              console.error('error, no account found');
+            }
+            
+            doc.status = "finished",
+            doc.end =  myDate.toLocaleTimeString();
+            doc.save();
+        });
+        res.render('sendMessage', {
+            message: "You have successfully paid for this session! ",
+            cookie: req.signedCookies.account
+        });
+        
+    } catch (err) {
+        res.statusCode = 400;
+        console.log(err);
+        //return res.send("Database query failed"); 
     }
 }; 
 
@@ -41,10 +82,16 @@ const getStatusByUsername = async (req, res) => {
 // input is all the record information
 const createStatus = async (req, res) => {
     try {
-        var layer=  await Layer.findOne({"bay_id":req.body.location});            
-        var restriction = await Restriction.findOne({"BayID":req.body.location});
-
-        if (!layer || !restriction) {
+        const layer=  await Layer.findOne({"bay_id":req.body.location});            
+        const restriction = await Restriction.findOne({"BayID":req.body.location});
+        const parking = await parkingHistory.findOne({"status":"parking", "username":req.signedCookies.account});
+        if(parking){
+            console.log('ongoing parking status');
+            res.render('sendMessage', {
+                message: 'you have ongoing parking status, click parking at the top right corner to finish your parking first',
+                cookie: req.signedCookies.account,
+            });
+        }else if (!layer || !restriction) {
             console.log('parking bay not found');
             res.render('sendMessage', {
                 message: 'parking bay not available, please choose another parking bay',
@@ -52,8 +99,8 @@ const createStatus = async (req, res) => {
             });
         }else{
         
-            var myDate = new Date();
-            var item = ({
+            const myDate = new Date();
+            const item = ({
                 username:req.signedCookies.account,
                 parkingBayID:req.body.location,
                 location: layer.rd_seg_dsc, 
@@ -64,7 +111,7 @@ const createStatus = async (req, res) => {
                 parkingID: uuid.v1(),
             });
             
-            var data = new parkingHistory(item);
+            const data = new parkingHistory(item);
             data.save();
             
             res.render('sendMessage', {
@@ -75,7 +122,7 @@ const createStatus = async (req, res) => {
         
         
     } catch (err) {
-        res.status=400; 
+        res.statusCode = 400;
         console.log(err);
         return res.send(err);
     }
@@ -84,7 +131,8 @@ const createStatus = async (req, res) => {
 
 
 module.exports = {
-    getAllStatus, 
     getStatusByUsername, 
-    createStatus
+    createStatus,
+    getParkingStatus,
+    finishParking,
 }; 

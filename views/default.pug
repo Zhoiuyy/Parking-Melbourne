@@ -33,38 +33,32 @@ html
         link(rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.css' type='text/css')
         // Global site tag (gtag.js) - Google Analytics
         script(async='' src='https://www.googletagmanager.com/gtag/js?id=UA-87359806-2')
+            
         
-    
-        
-        
-        //script.
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'UA-87359806-2');
-        //style.
-            .mapboxgl-popup-content {
-            background: hsla(0,0%,100%,0.9);
-            padding:5px;
-            }
     body
         header#home.py-sm-3.pt-3.pb-2
             <div class="container">
                 div.top.d-md-flex
-                    #logo
-                        a(href='/')
-                            |   Easiparking
+                    #logo 
+                        a(href='/')                        
+                            span.fa.fa-etsy.fa-2x
+                            |   asiparking
                 // check if logging in through cookie
                 // if logging in, display links to the  route of account and log out      
                 // if not logging in, display links to the route of log in and sign up
                 if cookie
                     div.text-right
+                        a.btn(href='/FindCarPark/parking')
+                            span.fa.fa-car
+                            |   Parking
                         a.btn(href='/account/'+ cookie)
                             span.fa.fa-user-circle-o
                             |   #{cookie}
                         a.btn(href='/account/log-out')
                             span.fa.fa-sign-out
                             |   Log out
+                        
+                        
                 else       
                     div.text-right
                         a.btn(href='/account/log-in') 
@@ -81,8 +75,6 @@ html
                 ul.menu
                     li
                     a(href='/findCarPark') FindCarPark
-                    li
-                    a(href='/parking') parking(Coming soon)
                     li
                     a(href='/contact') Contact us
                     li

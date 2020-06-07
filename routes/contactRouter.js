@@ -1,5 +1,5 @@
-var express = require('express');
-var contactRouter = express.Router();
+const express = require('express');
+const contactRouter = express.Router();
 
 /* GET contact page. */
 contactRouter.get('/', function(req, res, next) {

@@ -1,5 +1,5 @@
-var express = require('express');
-var feedbackRouter = express.Router();
+const express = require('express');
+const feedbackRouter = express.Router();
 const mongoose = require("mongoose");
 const Feedback = mongoose.model("feedback");
 
@@ -12,11 +12,11 @@ feedbackRouter.get('/', function(req, res, next) {
 });
 
 feedbackRouter.post('/', function(req, res, next) {
-    var item = ({
+    const item = ({
         feedback:req.body.feedback,
         parkingId:req.body.parkingId
     });
-    var data = new Feedback(item);
+    const data = new Feedback(item);
     data.save();
     res.render('sendMessage', {
         message: 'Thank you for your feedback. We\'ll endeavour to process your feedback as quickly as possible.',

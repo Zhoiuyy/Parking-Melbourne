@@ -1,4 +1,4 @@
-var expect = require('chai').expect;
+const expect = require('chai').expect;
 const supertest = require('supertest');
 const app = require('../../app');
 const request = require('supertest');
@@ -8,15 +8,27 @@ const Account = require('../../models/account');
 describe('integration test', function() {
     
     describe('createAccount', function(){
-        context('check if we can add an account', function(){
-            it('post an account', async function(){
-                let newAccount = {username:'testing',password:'testing',name:'WebInfo',gender:'N',licenseId:'30005',CardHolderName:'testing',CardNumber:'123456789101112',expiryDate:'07/20',CVV:'123'}; 
-                //let newAccounts = [...Account, newAccount];
+    
+        context('check if we can create an account with existing username', function(){
+            it('duplicate username, the account could not be successfully registere, will receive status code 400', async function(){
+                let newAccount = {username:'zhangxiyan',password:'testing',name:'testing',gender:'testing',licenseId:'30005',CardHolderName:'testing',CardNumber:'123456789101112',expiryDate:'07/20',CVV:'123'}; 
+                const res = await supertest(app)
+                    .post('/account/sign-up')
+                    .send(newAccount)
+                expect(res.statusCode).to.equal(400);          
+                                         
+                //const account = await Account.findOne({"username":'testing'});
+            })
+        })
+        
+        context('check if we can create an account with valid input', function(){
+            it('the account information should be recorded ', async function(){
+                let newAccount = {username:'testing_create',password:'testing',name:'WebInfo',gender:'N',licenseId:'30005',CardHolderName:'testing',CardNumber:'123456789101112',expiryDate:'07/20',CVV:'123'}; 
                 const res = await supertest(app)
                     .post('/account/sign-up')
                     .send(newAccount);
                 expect(res.statusCode).to.equal(200);                    
-                const account = await Account.findOne({"username":'testing'});
+                const account = await Account.findOne({"username":'testing_create'});
 
                 expect(account.username).to.deep.equal(newAccount.username);
                 expect(account.name).to.deep.equal(newAccount.name);
@@ -26,6 +38,8 @@ describe('integration test', function() {
                 expect(account.CardNumber).to.deep.equal(newAccount.CardNumber);
                 expect(account.expiryDate).to.deep.equal(newAccount.expiryDate);
                 expect(account.CVV).to.deep.equal(newAccount.CVV);
+                // delete testing account after testing
+                Account.findByIdAndRemove(account._id).exec();
             })
         })
     })
