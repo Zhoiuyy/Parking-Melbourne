@@ -24,8 +24,8 @@ When the user signing up, the system will detect if the username has been used b
 All information is required(can not be empty) except gender  
 views: views/signup.pug  
 routes: routes/accountRouter.js  
-controllers: controllers/accountController.js
-models: models/account.js
+controllers: controllers/accountController.js  
+models: models/account.js  
 
 2. Account Log-In  
 URL: https://easiparking.herokuapp.com/account/log-in  
@@ -35,8 +35,8 @@ You can test this with your own account or our sample account
 Sample account for testing (all lowercase): Username:zhangxiyan Password:zhangxiyan  
 views: views/logIn.pug  
 routes: routes/accountRouter.js  
-controllers: controllers/accountController.js
-models: models/account.js
+controllers: controllers/accountController.js  
+models: models/account.js  
 
 3. Contact Us  
 URL: https://easiparking.herokuapp.com/contact  
@@ -58,8 +58,8 @@ User can enter the overview page which includes information of himself by clicki
 There will be a few buttons to be clicked at the bottom and these will redirect the user to update the account information/password or view the parking history.  
 views: views/viewaccount.pug  
 routes: routes/accountRouter.js  
-controllers: controllers/accountController.js
-models: models/account.js
+controllers: controllers/accountController.js  
+models: models/account.js  
 
   
 5. Updating account information  
@@ -67,8 +67,8 @@ URL: https://easiparking.herokuapp.com/account/:username/update
 After clicking the update information button on user's overview page, the user will be redirected to the page where the user is allowed to type in new information to be updated. The page will be filled in automatically with your current information, you can adjust any of them according to your decision, these will not include the username since it cannot be modified after signing up.  
 views: views/update.pug  
 routes: routes/accountRouter.js  
-controllers: controllers/accountController.js
-models: models/account.js
+controllers: controllers/accountController.js  
+models: models/account.js  
 
 
 6. Updating account password  
@@ -76,8 +76,8 @@ URL: https://easiparking.herokuapp.com/account/:username/reset-password
 After clicking the update password button on the user's overview page, he will be redirected to the password reset page where the user will be asked to type in the new password twice. The page will display the message whether you've changed the password successfully.  
 views: views/resetPassword.pug  
 routes: routes/accountRouter.js  
-controllers: controllers/accountController.js controllers/brypts.js
-models: models/account.js
+controllers: controllers/accountController.js controllers/brypts.js  
+models: models/account.js  
 
 
 7. View parking history  
@@ -86,8 +86,8 @@ After clicking the parking history button on user's overview page, the user will
 There is a link below the parking history if you have any feedback to submit  
 views: views/parkingHistory.pug  
 routes: routes/accountRouter.js  
-controllers: controllers/parkingController.js
-models: models/parkingHistory.js models/layer.js models/restriction.js
+controllers: controllers/parkingController.js  
+models: models/parkingHistory.js models/layer.js models/restriction.js  
 
 
 8. Feedback  
@@ -95,15 +95,15 @@ URL: https://easiparking.herokuapp.com/feedback
 By clicking the link below the parking history, you can submit your feedback here, all information are required(can not be empty).  
 views: views/feedback.pug  
 routes: routes/feedbackRouter.js  
-models: models/feedback.js
+models: models/feedback.js  
 
 
 9. Logout  
 Log out anytime by clicking the 'log out' button at the top right corner.  
 views: views/default.pug  
 routes: routes/accountRouter.js  
-controllers: controllers/accountController.js
-models: models/account.js
+controllers: controllers/accountController.js  
+models: models/account.js  
 
 Functionality 3:  
 Parking Management - This allows user to see the real-time parking bay information of Melbourne city, and pick a most suitable parking bay, users can manage their parking information, such as starting parking, finishing parking, paying.  
